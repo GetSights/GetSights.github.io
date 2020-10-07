@@ -28,7 +28,7 @@ main > section > h2 {
 }
 
 .mainTitle {
-  font-size: 38px;
+  font-size: 34px;
   margin: 0 0 34px;
   text-align: center;
 }
@@ -139,6 +139,10 @@ main > section > h2 {
 }
 
 @media screen and (min-width: 768px) {
+  .mainTitle {
+    font-size: 38px;
+  }
+
   main > section > h2 {
     max-width: 700px;
   }
