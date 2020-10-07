@@ -44,21 +44,33 @@ main > section > h2 {
   margin-bottom: 0;
 }
 
+.scrollContainer {
+  width: 100%;
+  overflow: auto;
+}
+
 .screenshots ul {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow: auto;
+  width: calc(70% * 4);
 }
 .screenshots ul li {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 12px;
+  display: inline-block;
+  width: 70%;
 }
+
+.screenshots ul li:not(:last-child) {
+  margin-right: 10px;
+}
+
 .screenshots ul li img {
   display: block;
   width: 100%;
+  height: auto;
 }
 
 .storeLinks {
@@ -136,19 +148,11 @@ main > section > h2 {
   }
 
   .screenshots ul {
-    display: inline-flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    width: calc(300px * 4 + 30px);
   }
 
   .screenshots ul li {
-    display: inline-flex;
-    width: 46%;
-    margin-bottom: 2%;
-  }
-
-  .screenshots ul li:nth-child(2n - 1) {
-    margin-right: 8%;
+    width: 300px;
   }
 
   .storeLinks {
@@ -180,7 +184,9 @@ main > section > h2 {
   }
 
   .screenshots ul {
+    display: flex;
     flex-wrap: nowrap;
+    width: 100%;
   }
 
   .screenshots ul li {
@@ -188,9 +194,6 @@ main > section > h2 {
     margin-bottom: 0;
   }
 
-  .screenshots ul li:nth-child(2n - 1) {
-    margin-right: 0;
-  }
   .screenshots ul li:not(:last-child) {
     margin-right: 0.5%;
   }
