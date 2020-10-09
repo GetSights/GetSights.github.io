@@ -85,11 +85,6 @@ main > section > h2 {
   text-decoration: none;
 }
 
-.storeLinks a[disabled] {
-  cursor: default;
-  pointer-events: none;
-}
-
 .storeLinks a span,
 .storeLinks a strong {
   display: block;
