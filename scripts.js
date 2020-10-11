@@ -1,106 +1,21 @@
 var ENGLISH = 'en-US';
 var RUSSIAN = 'ru-RU';
+var UKRAINIAN = 'uk-UA';
+var BELORUSSIAN = 'be-BY';
 var SUPPORTED_LANGUAGES = {
   [ENGLISH]: ENGLISH,
   [RUSSIAN]: RUSSIAN,
 };
 
 var ALL_CONTENT = {
-  [ENGLISH]: {
-    mainTitle: 'GetSights mobile app',
-    sectionWithScreenshots: {
-      title: 'Screenshots',
-      homeScreen: {
-        src: './assets/screenshots/homeScreen.png',
-        alt: 'Home screen',
-      },
-      mapScreen: {
-        src: './assets/screenshots/mapScreen.png',
-        alt: 'Map screen',
-      },
-      uploadScreen: {
-        src: './assets/screenshots/uploadScreen.png',
-        alt: 'Upload screen',
-      },
-      profileScreen: {
-        src: './assets/screenshots/profileScreen.png',
-        alt: 'Profile screen',
-      },
-    },
-    sectionWithLinksToStores: {
-      title: 'Links to Stores',
-    },
-    sectionWithDescription: {
-      title: 'What is GetSights?',
-      description: `
-        <p>
-          You can find <strong>the best sightseeing</strong>, <strong>lovely places</strong>, <strong>great locations</strong> and <strong>interesting routes</strong> around you, using <strong>GetSights</strong>'s Mobile App.
-        </p>
-        <p>
-          Plan your <strong>trip</strong> or regular <strong>walk</strong>, find the best <strong>sights</strong> and <strong>routes</strong>, created by <strong>travel bloggers</strong>, <strong>professional travellers</strong> or other users, create your <strong>own routes</strong>, share its with friends and more – all from your mobile device.
-        </p>
-      `,
-      keyFeaturesTitle: 'Key Features:',
-      keyFeatures: `
-        <li>find the best <strong>sightseeing</strong>, lovely <strong>places</strong> or great <strong>locations</strong> around the world</li>
-        <li>draw you own polygon to <strong>search sights</strong></li>
-        <li>see only <strong>good quality</strong> content, because each photo will be reviewed by our moderators</li>
-        <li>create your own <strong>routes</strong> from liked photos</li>
-        <li>open <strong>routes</strong> on <strong>Google Map</strong> (Navigator)</li>
-        <li>save your <strong>routes</strong></li>
-        <li>share your <strong>routes</strong> with other people</li>
-        <li>mark your <strong>routes</strong> like a private or public</li>
-        <li>add link to your instagram profile to each photo uploaded by you</li>
-        <li>find <strong>routes</strong> from travel <strong>bloggers</strong>, professional <strong>travellers</strong> or other users</li>
-        <li>etc...</li>
-      `,
-      geolocation: `
-        Each <strong>place</strong> has description, category and geolocation so you can get to this <strong>great location</strong> by car, bicycle, electric scooter or by feet.
-        If you know that some place has incorrect <strong>geolocation</strong> you can make a report and send correct geolocation as well.
-      `,
-      feedback: 'If you would like to send feedback, improve <strong>GetSights</strong> or support us please feel free to send your email to',
-      wishes: 'Enjoy your trip!',
-    },
-    sectionWithSocialMedia: {
-      title: 'Follow us on social media',
-    },
-    sectionWithPrivacyAndPolicy: {
-      title: 'Please read our Privacy and Policy',
-      name: 'Go to GetSights Privacy and Policy',
-    },
-    sectionWithLoginViaGoogle: {
-      title: 'Login via Google',
-      description: 'We are using login via Google to make authentication process more clearly and easily for you. We are using your personal data(name and avatar) just to display it. To know that you are an authorized user.',
-    },
-    sectionWithLoginViaFacebook: {
-      title: 'Login via Facebook',
-      description: 'We are using login via Facebook to make authentication process more clearly and easily for you. We are using your personal data(name and avatar) just to display it. To know that you are an authorized user.',
-    },
-    sectionWithLoginViaInstagram: {
-      title: 'Login via Instagram',
-      description: 'We are using login via Instagram to make authentication process more clearly and easily for you. We are using your personal data(name and avatar) just to display it. To know that you are an authorized user.',
-    },
-  },
   [RUSSIAN]: {
     mainTitle: 'GetSights мобильное приложение',
     sectionWithScreenshots: {
       title: 'Скриншоты',
-      homeScreen: {
-        src: './assets/screenshots/homeScreen_ru.png',
-        alt: 'Экран главной страницы',
-      },
-      mapScreen: {
-        src: './assets/screenshots/mapScreen_ru.png',
-        alt: 'Экран карты',
-      },
-      uploadScreen: {
-        src: './assets/screenshots/uploadScreen_ru.png',
-        alt: 'Экран загрузки',
-      },
-      profileScreen: {
-        src: './assets/screenshots/profileScreen_ru.png',
-        alt: 'Экран профиля',
-      },
+      homeScreen: '<img src="./assets/screenshots/homeScreen_ru.png" alt="Экран главной страницы" />',
+      mapScreen: '<img src="./assets/screenshots/mapScreen_ru.png" alt="Экран карты" />',
+      uploadScreen: '<img src="./assets/screenshots/uploadScreen_ru.png" alt="Экран загрузки" />',
+      profileScreen: '<img src="./assets/screenshots/profileScreen_ru.png" alt="Экран профиля" />',
     },
     sectionWithLinksToStores: {
       title: 'Ссылки к сторам',
@@ -158,161 +73,123 @@ var ALL_CONTENT = {
   },
 };
 
-function renderMainTitle(title) {
-  return `
-    <h1 class="mainTitle">${title}</h1>
-  `;
+function translateMainTitle(title) {
+  var mainTitle = document.querySelector('.mainTitle');
+
+  mainTitle.textContent = title;
 };
 
-function renderSectionWithScreenshots(data) {
-  return `
-    <section class="screenshots">
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        <div class="scrollContainer">
-          <ul>
-            <li>
-              <img src="${data.homeScreen.src}" alt="${data.homeScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.mapScreen.src}" alt="${data.mapScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.uploadScreen.src}" alt="${data.uploadScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.profileScreen.src}" alt="${data.profileScreen.alt}" />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  `;
-};
+function translateSectionWithScreenshots(data) {
+  var section = document.querySelector('.screenshots');
 
-function renderSectionWithLinksToStores(data) {
-  return `
-    <section class="storeLinksSection">
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        <div class="storeLinks">
-          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
-            <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
-          </a>
-          <a id="AppleStoreLink" href="#">
-            <img src="./assets/icons/AppleStore.png" alt="App Store" />
-          </a>
-        </div>
-      </div>
-    </section>
-  `;
-};
-
-function renderSectionWithDescription(data) {
-  return `
-    <section>
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        ${data.description}
-        <h3>${data.keyFeaturesTitle}</h3>
-        <ul class="listOfPosibilities">
-          ${data.keyFeatures}
+  section.innerHTML = `
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <div class="scrollContainer">
+        <ul>
+          <li>${data.homeScreen}</li>
+          <li>${data.mapScreen}</li>
+          <li>${data.uploadScreen}</li>
+          <li>${data.profileScreen}</li>
         </ul>
-        <p>
-          ${data.geolocation}
-        </p>
-        <p>
-          ${data.feedback} <a href="mailto:getsights.info@gmail.com">getsights.info@gmail.com</a>
-        </p>
-        <h3>${data.wishes}</h3>
       </div>
-    </section>
+    </div>
+  `;
+};
+
+function translateSectionWithLinksToStores(data) {
+  var title = document.querySelector('.linksToStores h2');
+
+  title.textContent = data.title;
+};
+
+function translateSectionWithDescription(data) {
+  var section = document.querySelector('.description');
+
+  section.innerHTML = `
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      ${data.description}
+      <h3>${data.keyFeaturesTitle}</h3>
+      <ul class="listOfPosibilities">
+        ${data.keyFeatures}
+      </ul>
+      <p>
+        ${data.geolocation}
+      </p>
+      <p>
+        ${data.feedback} <a href="mailto:getsights.info@gmail.com">getsights.info@gmail.com</a>
+      </p>
+      <h3>${data.wishes}</h3>
+    </div>
   `;
 };
 
 function renderSectionWithSocialMedia(data) {
   return `
-    <section class="social-media">
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        <ul>
-          <li>
-            <a href="https://www.instagram.com/getsights" target="_blank">
-              <img src="./assets/icons/instagram.png" alt="Instagram" />
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/GetSights" target="_blank">
-              <img src="./assets/icons/twitter.png" alt="Twitter" />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/company/getsights" target="_blank">
-              <img src="./assets/icons/linkedin.png" alt="Linkedin" />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com/get.sights" target="_blank">
-              <img src="./assets/icons/facebook.png" alt="Facebook" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <ul>
+        <li>
+          <a href="https://www.instagram.com/getsights" target="_blank">
+            <img src="./assets/icons/instagram.png" alt="Instagram" />
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/GetSights" target="_blank">
+            <img src="./assets/icons/twitter.png" alt="Twitter" />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/getsights" target="_blank">
+            <img src="./assets/icons/linkedin.png" alt="Linkedin" />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/get.sights" target="_blank">
+            <img src="./assets/icons/facebook.png" alt="Facebook" />
+          </a>
+        </li>
+      </ul>
+    </div>
   `;
 };
 
 function renderSectionWithPrivacyAndPolicy(data) {
   return `
-    <section>
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        <a href="https://info.get-sights.com/privacy-and-policy/" target="_blank">
-          ${data.name}
-        </a>
-      </div>
-    </section>
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <a href="https://info.get-sights.com/privacy-and-policy/" target="_blank">
+        ${data.name}
+      </a>
+    </div>
   `;
 }
 
 function renderSectionWithLoginViaThirdPartyProvider(data) {
   return `
-    <section>
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        <p>
-          ${data.description}
-        </p>
-      </div>
-    </section>
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <p>
+        ${data.description}
+      </p>
+    </div>
   `;
 }
 
-function renderContent(currentLanguage) {
-  var main = document.querySelector('main');
+function renderContentDependingOnLanguage(currentLanguage) {
   var content = ALL_CONTENT[currentLanguage];
 
-  const mainTitle = renderMainTitle(content.mainTitle);
-  const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
-  const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
-  const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
-  const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
-  const sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
-  const sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
-  const sectionWithLoginViaFacebook = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaFacebook);
-  const sectionWithLoginViaInstagram = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaInstagram);
+  translateMainTitle(content.mainTitle);
+  translateSectionWithScreenshots(content.sectionWithScreenshots);
+  translateSectionWithLinksToStores(content.sectionWithLinksToStores);
+  translateSectionWithDescription(content.sectionWithDescription);
 
-  main.innerHTML = `
-    ${mainTitle}
-    ${sectionWithScreenshots}
-    ${sectionWithLinksToStores}
-    ${sectionWithDescription}
-    ${sectionWithSocialMedia}
-    ${sectionWithPrivacyAndPolicy}
-    ${sectionWithLoginViaGoogle}
-    ${sectionWithLoginViaFacebook}
-    ${sectionWithLoginViaInstagram}
-  `;
+  // const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
+  // const sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
+  // const sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
+  // const sectionWithLoginViaFacebook = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaFacebook);
+  // const sectionWithLoginViaInstagram = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaInstagram);
 }
 
 function getCurrentLanguage() {
@@ -332,7 +209,10 @@ function registerHandlers() {
 function init() {
   var currentLanguage = getCurrentLanguage();
 
-  renderContent(currentLanguage);
+  if (currentLanguage === RUSSIAN || currentLanguage === UKRAINIAN || currentLanguage === BELORUSSIAN) {
+    renderContentDependingOnLanguage(currentLanguage);
+  }
+
   registerHandlers();
 }
 
