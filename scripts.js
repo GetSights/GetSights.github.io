@@ -196,11 +196,11 @@ function renderSectionWithLinksToStores(data) {
       <h2>${data.title}</h2>
       <div class="contentContainer">
         <div class="storeLinks">
-          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" onclick="ga('send', 'event', 'ButtonToStores', 'click', 'GooglePlay', 'true');" target="_blank">
+          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
           </a>
           <a id="AppleStoreLink" href="#">
-            <img src="./assets/icons/AppleStore.png" onclick="ga('send', 'event', 'ButtonToStores', 'click', 'AppStore', 'true');" alt="App Store" />
+            <img src="./assets/icons/AppleStore.png" alt="App Store" />
           </a>
         </div>
       </div>
