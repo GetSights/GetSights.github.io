@@ -196,10 +196,10 @@ function renderSectionWithLinksToStores(data) {
       <h2>${data.title}</h2>
       <div class="contentContainer">
         <div class="storeLinks">
-          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
+          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
           </a>
-          <a id="AppleStoreLink" href="#">
+          <a id="AppleStoreLinkToStore" href="#">
             <img src="./assets/icons/AppleStore.png" alt="App Store" />
           </a>
         </div>
@@ -322,7 +322,7 @@ function getCurrentLanguage() {
 }
 
 function registerHandlers() {
-  var linkToAppleStore = document.getElementById('AppleStoreLink');
+  var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
 
   linkToAppleStore.addEventListener('click', function() {
     alert('Unfortunately GetSights has not released to Apple Store yet :( \n\nIf you would like to know exact release date please drop your email to getsights.info@gmail.com or follow us on social media');
