@@ -222,7 +222,7 @@ function renderSectionWithDescription(data) {
           ${data.geolocation}
         </p>
         <p>
-          ${data.feedback} <a href="mailto:getsights.info@gmail.com">getsights.info@gmail.com</a>
+          ${data.feedback} <a href="mailto:getsights.info@gmail.com" target="_blank">getsights.info@gmail.com</a>
         </p>
         <h3>${data.wishes}</h3>
       </div>
