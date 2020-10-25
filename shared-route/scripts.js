@@ -24,18 +24,19 @@ function renderRoutePoint(item) {
   return `<li><img src="${item.imageSrcSmall}" alt="${item.address.country}" /></li>`;
 }
 
-function renderRoute(cb) {
+function renderRoute() {
   var routeId = 'NWY5MTJmZWQ4MzZhYzcwZDI5ZjAxOTY5';
   var lang = (window.navigator.language === 'ru' || window.navigator.language === RUSSIAN)
     ? 'ru'
     : 'en'; // TODO: Add function to detect lang here
   
   return fetch(`https://api.get-sights.com/api/routes/display?id=${routeId}&lang=${lang}`)
-    .then((response) => response.json())
-    .then((route) => {
-      cb();
-      return `<ul>${route.map(renderRoutePoint)}</ul>`;
-    });
+    // .then((response) => response.json())
+    // .then((route) => {
+    //   console.log(route, ' **************');
+    //   // cb();
+    //   return `<ul>${route.map(renderRoutePoint)}</ul>`;
+    // });
 
   // const route = [];
 
@@ -52,12 +53,22 @@ function renderContent(currentLanguage) {
     var content = ALL_CONTENT[currentLanguage];
   
     const mainTitle = renderMainTitle(content.mainTitle);
-    const route = renderRoute(res);
+    return renderRoute()
+      .then((response) => response.json())
+      .then((route) => {
+        console.log(route, ' **************');
+        res(main.innerHTML = `
+          ${mainTitle}
+          <ul>${route.map(renderRoutePoint)}</ul>
+        `);
+      });
   
-    main.innerHTML = `
-      ${mainTitle}
-      ${route}
-    `;
+    // res(
+    //   main.innerHTML = `
+    //     ${mainTitle}
+    //     ${route}
+    //   `
+    // );
   });
 }
 
