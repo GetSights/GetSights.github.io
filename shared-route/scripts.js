@@ -59,7 +59,7 @@ function renderContent(currentLanguage) {
         console.log(route, ' **************');
         res(main.innerHTML = `
           ${mainTitle}
-          <ul>${route.map(renderRoutePoint)}</ul>
+          <ul>${route.points.map(renderRoutePoint)}</ul>
         `);
       });
   
