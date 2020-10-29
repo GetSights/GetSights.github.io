@@ -10,6 +10,8 @@ import getImageOriginalSize from './utils/getImageOriginalSize';
 import formatDate from './utils/formatDate';
 import './style.scss';
 
+// import mockedRoute from '../mockedRoute';
+
 const ENGLISH = 'en-US';
 const RUSSIAN = 'ru-RU';
 const SUPPORTED_LANGUAGES = {
@@ -100,8 +102,10 @@ function initSlideshow() {
   const bottomSlideshow = document.querySelector('.bottomSlideshow');
   const buttonPrev = container.querySelector('.prev');
   const buttonNext = container.querySelector('.next');
-  const slideshowWidth = slideshow.offsetWidth;
-  const bottomSlideshowItemWidth = slideshowWidth / 2.6;
+  const slideshowWidth = slideshow ? slideshow.offsetWidth : 0;
+  const bottomSlideshowItemWidth = bottomSlideshow
+    ? bottomSlideshow.children[0].offsetWidth + 6 // TODO: Add constants here
+    : 0;
 
   if (lastSlideIndex === undefined) {
     lastSlideIndex = slideshow.children.length - 1;
@@ -220,6 +224,11 @@ function fetchRoute() {
   if (params.id) {
     return fetch(`https://api.get-sights.com/api/routes/display?id=${params.id}&lang=${lang}`)
       .then((response) => response.json());
+
+    // return new Promise((res) => {
+    //   setTimeout(() => { res(mockedRoute); }, 100);
+    // });
+
   } else {
     return Promise.resolve();
   }
