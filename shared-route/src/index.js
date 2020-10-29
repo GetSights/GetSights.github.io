@@ -244,7 +244,7 @@ async function renderContent(currentLanguage) {
     ? `
       <div class="container">
         <div class="header">
-          <span class="routeName">${route.name} ${route.name} ${route.name} ${route.name} ${route.name}</span>
+          <span class="routeName">${route.name}</span>
           <button class="buttonWithOptions">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path fill="white" d="M.04 10c0-1.31 1.07-2.38 2.38-2.38S4.8 8.68 4.8 10c0 1.31-1.05 2.38-2.38 2.38C1.11 12.38.04 11.31.04 10zM15.2 10c0-1.31 1.07-2.38 2.38-2.38s2.38 1.06 2.38 2.38c0 1.31-1.05 2.38-2.38 2.38C16.27 12.38 15.2 11.31 15.2 10zM7.62 10c0-1.31 1.07-2.38 2.38-2.38s2.38 1.06 2.38 2.38c0 1.31-1.05 2.38-2.38 2.38C8.69 12.38 7.62 11.31 7.62 10z"/>
