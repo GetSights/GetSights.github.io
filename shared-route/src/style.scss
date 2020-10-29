@@ -1,0 +1,298 @@
+$header-height: 50px;
+$author-info-height: 40px;
+
+$LIGHT_GREY: #d1d1d1;
+$BLUE: #5c93c4;
+
+html {
+  height: 100%;
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  main {
+    height: 100%;
+  }
+}
+
+/* TODO: Combine loader styles with main style.css */
+.loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    font-size: 50px;
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: $header-height;
+    background: linear-gradient(black, transparent);
+    transition: transform 0.5s;
+
+    .routeName {
+      display: block;
+      overflow: hidden;
+      box-sizing: border-box;
+      width: 100%;
+      height: $header-height;
+      padding: 0 60px;
+      line-height: $header-height;
+      white-space: nowrap;
+      text-align: center;
+      text-overflow: ellipsis;
+      font-size: 16px;
+      font-weight: 300;
+      color: white;
+    }
+
+    .buttonWithOptions {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 50px;
+      padding: 0 12px 0 16px;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+    }
+  }
+
+  .containerSlideshow {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 144px);
+  }
+  .slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    white-space: nowrap;
+    transition: transform 0.3s;
+
+    li {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: relative;
+      overflow: hidden;
+      height: calc(100% - #{$author-info-height});
+
+      .imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          transition: transform 0.5s;
+        }
+      }
+
+      .info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        min-height: 80px;
+        max-height: 150px;
+        padding: 10px;
+        box-sizing: border-box;
+        color: white;
+        background: linear-gradient(rgba(0,0,0,0.15), black);
+        transition: transform 0.5s;
+
+        span {
+          display: block;
+
+          &.icon {
+            text-align: center;
+
+            .openMoreSlideInfoButton {
+              border: none;
+              background-color: transparent;
+              cursor: pointer;
+
+              svg {
+                transform: scale(2);
+              }
+            }
+          }
+
+          &.country,
+          &.city {
+            font-size: 16px;
+            margin-bottom: 2px;
+          }
+
+          &.street {
+            font-size: 12px;
+            font-weight: 300;
+            color: $LIGHT_GREY;
+          }
+
+          &.date {
+            font-size: 9px;
+            font-weight: 300;
+            color: $LIGHT_GREY;
+          }
+        }
+
+        .streetAndDateContainer {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .authorContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: $author-info-height;
+      padding: 0 10px;
+
+      .text {
+        font-size: 12px;
+        font-weight: 300;
+        color: $LIGHT_GREY;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .bottomSlideshow {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+    height: 144px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-top: 2px solid #dedede;
+
+    li {
+      position: relative;
+      display: inline-block;
+      width: 130px;
+      height: 130px;
+      padding: 6px 0;
+      margin: 0 6px 0 0;
+      cursor: pointer;
+
+      &.current::before,
+      &.current::after {
+        position: absolute;
+        left: 50%;
+        width: calc(100% - 20px);
+        height: 2px;
+        border-radius: 2px;
+        content: '';
+        background-color: grey;
+        transform: translateX(-50%);
+      }
+
+      &.current::before {
+        top: 0;
+      }
+      &.current::after {
+        bottom: 0;
+      }
+
+      &:first-child {
+        margin-left: 6px;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      width: 100px;
+      height: 100%;
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  @media screen and (min-width: 620px) {
+    width: 620px;
+    margin: 0 auto;
+
+    .slideshow {
+      .slide {
+        .info {
+          span {
+            &.country,
+            &.city {
+              font-size: 18px;
+            }
+
+            &.street {
+              font-size: 14px;
+            }
+
+            &.date {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+
+      .authorContainer {
+        .text {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+$animation-duration: 0.5s;
+$animation-delay: 0.8s;
+
+.modalWithOptions {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: $animation-delay;
+
+  .options {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    padding: 10px 0;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity $animation-duration;
+
+    li {
+      display: block;
+      list-style: none;
+
+      button {
+        width: 100%;
+        font-size: 18px;
+        font-weight: 300;
+        padding: 12px 20px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        text-align: left;
+      }
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity $animation-duration;
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+
+    .options {
+      opacity: 1;
+    }
+
+    .backdrop {
+      opacity: 1;
+    }
+  }
+}
