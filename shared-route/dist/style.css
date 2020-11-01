@@ -9,7 +9,8 @@ html {
     height: 100%; }
 
 /* TODO: Combine loader styles with main style.css */
-.loader {
+.notFoundContainer,
+.loaderContainer {
   position: absolute;
   top: 0;
   right: 0;
@@ -20,7 +21,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .loader > span {
+  .notFoundContainer > span,
+  .loaderContainer > span {
     font-size: 50px; }
 
 .container {
@@ -29,152 +31,86 @@ html {
   height: 100%;
   overflow: hidden; }
   .container .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     height: 50px;
-    background: linear-gradient(black, transparent);
     transition: transform 0.5s; }
-    .container .header .routeName {
-      display: block;
-      overflow: hidden;
-      box-sizing: border-box;
-      width: 100%;
-      height: 50px;
-      padding: 0 60px;
-      line-height: 50px;
-      white-space: nowrap;
-      text-align: center;
-      text-overflow: ellipsis;
-      font-size: 16px;
-      font-weight: 300;
-      color: white; }
-    .container .header .buttonWithOptions {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 50px;
-      padding: 0 12px 0 16px;
-      border: none;
-      cursor: pointer;
-      background-color: transparent; }
-  .container .containerSlideshow {
+    .container .header button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 8px;
+      outline: none; }
+      .container .header button svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 4px; }
+      .container .header button.walk, .container .header button.drive {
+        border: 2px solid #d1d1d1;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 30px;
+        color: #d1d1d1;
+        background-color: transparent; }
+        .container .header button.walk svg, .container .header button.drive svg {
+          fill: #d1d1d1; }
+      .container .header button.current {
+        border: 2px solid #5c93c4;
+        color: #5c93c4; }
+        .container .header button.current svg {
+          fill: #5c93c4; }
+      .container .header button.direction {
+        border: 2px solid #5c93c4;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 30px;
+        background-color: #5c93c4;
+        color: white; }
+        .container .header button.direction svg {
+          fill: white; }
+  .container .map {
     position: relative;
     width: 100%;
-    height: calc(100% - 144px); }
-  .container .slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    white-space: nowrap;
-    transition: transform 0.3s; }
-    .container .slideshow li {
-      display: inline-block;
-      width: 100%;
-      height: 100%; }
-    .container .slideshow .slide {
-      position: relative;
-      overflow: hidden;
-      height: calc(100% - 40px); }
-      .container .slideshow .slide .imageContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%; }
-        .container .slideshow .slide .imageContainer img {
-          transition: transform 0.5s; }
-      .container .slideshow .slide .info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        min-height: 80px;
-        max-height: 150px;
-        padding: 10px;
-        box-sizing: border-box;
-        color: white;
-        background: linear-gradient(rgba(0, 0, 0, 0.15), black);
-        transition: transform 0.5s; }
-        .container .slideshow .slide .info span {
-          display: block; }
-          .container .slideshow .slide .info span.icon {
-            text-align: center; }
-            .container .slideshow .slide .info span.icon .openMoreSlideInfoButton {
-              border: none;
-              background-color: transparent;
-              cursor: pointer; }
-              .container .slideshow .slide .info span.icon .openMoreSlideInfoButton svg {
-                transform: scale(2); }
-          .container .slideshow .slide .info span.country, .container .slideshow .slide .info span.city {
-            font-size: 16px;
-            margin-bottom: 2px; }
-          .container .slideshow .slide .info span.street {
-            font-size: 12px;
-            font-weight: 300;
-            color: #d1d1d1; }
-          .container .slideshow .slide .info span.date {
-            font-size: 9px;
-            font-weight: 300;
-            color: #d1d1d1; }
-        .container .slideshow .slide .info .streetAndDateContainer {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-top: 10px; }
-    .container .slideshow .authorContainer {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      height: 40px;
-      padding: 0 10px; }
-      .container .slideshow .authorContainer .text {
-        font-size: 12px;
-        font-weight: 300;
-        color: #d1d1d1;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap; }
-        .container .slideshow .authorContainer .text a {
-          text-decoration: none; }
+    height: calc(100% - calc(140px + 12px) - 50px); }
   .container .bottomSlideshow {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     margin: 0;
     padding: 0;
-    height: 144px;
+    height: calc(140px + 12px);
     box-sizing: border-box;
-    white-space: nowrap;
-    border-top: 2px solid #dedede; }
+    white-space: nowrap; }
     .container .bottomSlideshow li {
       position: relative;
       display: inline-block;
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       padding: 6px 0;
       margin: 0 6px 0 0;
       cursor: pointer; }
-      .container .bottomSlideshow li.current::before, .container .bottomSlideshow li.current::after {
+      .container .bottomSlideshow li .number {
         position: absolute;
-        left: 50%;
-        width: calc(100% - 20px);
-        height: 2px;
-        border-radius: 2px;
-        content: '';
-        background-color: grey;
-        transform: translateX(-50%); }
-      .container .bottomSlideshow li.current::before {
-        top: 0; }
-      .container .bottomSlideshow li.current::after {
-        bottom: 0; }
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 70px;
+        font-weight: 300;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: background-color 0.3s; }
+      .container .bottomSlideshow li.current .number {
+        background-color: white; }
       .container .bottomSlideshow li:first-child {
         margin-left: 6px; }
       .container .bottomSlideshow li img {
@@ -182,269 +118,7 @@ html {
         width: 100%;
         height: 100%;
         object-fit: cover; }
-  .container .controls {
-    width: 100%;
-    display: flex;
-    justify-content: space-between; }
-    .container .controls button {
-      width: 100px;
-      height: 100%;
-      border: none;
-      background-color: transparent; }
   @media screen and (min-width: 620px) {
     .container {
       width: 620px;
-      margin: 0 auto; }
-      .container .slideshow .slide .info span.country, .container .slideshow .slide .info span.city {
-        font-size: 18px; }
-      .container .slideshow .slide .info span.street {
-        font-size: 14px; }
-      .container .slideshow .slide .info span.date {
-        font-size: 11px; }
-      .container .slideshow .authorContainer .text {
-        font-size: 14px; } }
-
-.modalWithOptions {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition-delay: 0.8s; }
-  .modalWithOptions .options {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    padding: 10px 0;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 16px;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.5s; }
-    .modalWithOptions .options li {
-      display: block;
-      list-style: none; }
-      .modalWithOptions .options li button {
-        width: 100%;
-        font-size: 18px;
-        font-weight: 300;
-        padding: 12px 20px;
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
-        text-align: left; }
-  .modalWithOptions .backdrop {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.5s; }
-  .modalWithOptions.visible {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s; }
-    .modalWithOptions.visible .options {
-      opacity: 1; }
-    .modalWithOptions.visible .backdrop {
-      opacity: 1; }
-
-.modalWithRouteInfo {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition-delay: 0.8s; }
-  .modalWithRouteInfo .info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    padding: 10px 20px;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 16px;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.5s; }
-    .modalWithRouteInfo .info li {
-      display: block;
-      list-style: none;
-      margin-bottom: 8px; }
-      .modalWithRouteInfo .info li span {
-        font-size: 14px; }
-        .modalWithRouteInfo .info li span:first-child {
-          margin-right: 4px; }
-        .modalWithRouteInfo .info li span:last-child {
-          font-weight: 300; }
-        .modalWithRouteInfo .info li span.date {
-          white-space: nowrap; }
-  .modalWithRouteInfo .backdrop {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.5s; }
-  .modalWithRouteInfo.visible {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s; }
-    .modalWithRouteInfo.visible .info {
-      opacity: 1; }
-    .modalWithRouteInfo.visible .backdrop {
-      opacity: 1; }
-  @media screen and (min-width: 620px) {
-    .modalWithRouteInfo .info {
-      width: 320px;
-      padding: 14px 20px; }
-      .modalWithRouteInfo .info li span {
-        font-size: 16px; } }
-
-.modalWithSlideInfo {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition-delay: 0.8s; }
-  .modalWithSlideInfo .info {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    width: 100%;
-    height: 70%;
-    border-radius: 20px 20px 0 0;
-    background-color: white;
-    transform: translateY(100%);
-    transition: transform 0.5s ease-in-out; }
-    .modalWithSlideInfo .info .headerInfo {
-      position: relative;
-      height: 50px; }
-      .modalWithSlideInfo .info .headerInfo .close {
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 40px;
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
-        outline: none; }
-        .modalWithSlideInfo .info .headerInfo .close span {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 26px;
-          height: 26px;
-          border-radius: 26px;
-          background-color: #a8a8a8; }
-          .modalWithSlideInfo .info .headerInfo .close span svg {
-            width: 12px;
-            height: 12px; }
-    .modalWithSlideInfo .info .infoContainer {
-      padding: 4px 12px 12px 12px;
-      height: calc(100% - 50px);
-      box-sizing: border-box;
-      overflow-y: auto; }
-      .modalWithSlideInfo .info .infoContainer span {
-        display: block;
-        color: #d1d1d1;
-        font-weight: 300; }
-        .modalWithSlideInfo .info .infoContainer span.country {
-          font-size: 20px;
-          margin-bottom: 4px; }
-        .modalWithSlideInfo .info .infoContainer span.city {
-          font-size: 18px;
-          margin-bottom: 10px; }
-        .modalWithSlideInfo .info .infoContainer span.street, .modalWithSlideInfo .info .infoContainer span.date {
-          font-size: 14px;
-          margin-bottom: 10px; }
-        .modalWithSlideInfo .info .infoContainer span.description {
-          font-size: 14px; }
-  .modalWithSlideInfo .backdrop {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.5s; }
-  .modalWithSlideInfo.visible {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s; }
-    .modalWithSlideInfo.visible .info {
-      transform: translateY(0); }
-    .modalWithSlideInfo.visible .backdrop {
-      opacity: 1; }
-  @media screen and (min-width: 480px) {
-    .modalWithSlideInfo .info {
-      width: 480px;
-      left: 50%;
-      transform: translateY(100%) translateX(-50%); }
-    .modalWithSlideInfo.visible .info {
-      transform: translateY(0) translateX(-50%); } }
-  @media screen and (min-width: 620px) {
-    .modalWithSlideInfo .info .headerInfo .close {
-      width: 50px;
-      height: 50px; }
-      .modalWithSlideInfo .info .headerInfo .close span {
-        width: 30px;
-        height: 30px;
-        border-radius: 30px; }
-        .modalWithSlideInfo .info .headerInfo .close span svg {
-          width: 14px;
-          height: 14px; }
-    .modalWithSlideInfo .info .infoContainer span.country {
-      font-size: 22px; }
-    .modalWithSlideInfo .info .infoContainer span.city {
-      font-size: 20px; }
-    .modalWithSlideInfo .info .infoContainer span.street, .modalWithSlideInfo .info .infoContainer span.date {
-      font-size: 16px; }
-    .modalWithSlideInfo .info .infoContainer span.description {
-      font-size: 16px; } }
+      margin: 0 auto; } }

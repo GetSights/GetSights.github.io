@@ -1,213 +1,17 @@
-import renderModalWithOptions from './ModalWithOptions';
-import renderModalWithRouteInfo from './ModalWithRouteInfo';
-import {
-  renderModalWithSlideInfo,
-  registerOpenMoreSlideInfoButtonHandler,
-} from './ModalWithSlideInfo';
+import Map from './Map';
+import directionsButtonsHandlers from './directionsButtonsHandlers';
+import { ENGLISH, RUSSIAN, ALL_CONTENT, SUPPORTED_LANGUAGES } from './constants';
 import getQueryParams from './utils/getQueryParams';
-import useImageSize from './utils/useImageSize';
-import getImageOriginalSize from './utils/getImageOriginalSize';
-import formatDate from './utils/formatDate';
 import './style.scss';
 
 // import mockedRoute from '../mockedRoute';
 
-const ENGLISH = 'en-US';
-const RUSSIAN = 'ru-RU';
-const SUPPORTED_LANGUAGES = {
-  [ENGLISH]: ENGLISH,
-  [RUSSIAN]: RUSSIAN,
-};
-
-const ALL_CONTENT = {
-  [ENGLISH]: {
-    notFound: 'Route not found',
-    author: 'Photo by',
-    modal: {
-      info: 'Info',
-      openOnTheMap: 'Open on the map',
-    },
-    modalWithRouteInfo: {
-      name: 'Name',
-      createdAt: 'Created at',
-      updatedAt: 'Updated at',
-    },
-  },
-  [RUSSIAN]: {
-    notFound: 'Маршрут не найден',
-    author: 'Фото',
-    modal: {
-      info: 'Информация',
-      openOnTheMap: 'Открыть на карте',
-    },
-    modalWithRouteInfo: {
-      name: 'Название',
-      createdAt: 'Создан',
-      updatedAt: 'Обновлён',
-    },
-  },
-};
-
-let currentSlideIndex = 0;
-let lastSlideIndex;
-
-function goToPrev(slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth) {
-  const prevIndex = currentSlideIndex > 0
-    ? currentSlideIndex - 1
-    : currentSlideIndex;
-
-  goToSlide(prevIndex, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-}
-
-function goToNext(slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth) {
-  const nextIndex = currentSlideIndex < lastSlideIndex
-    ? currentSlideIndex + 1
-    : currentSlideIndex;
-
-  goToSlide(nextIndex, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-}
-
-function goToSlide(index, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth) {
-  if (index < 0 || index > lastSlideIndex) {
-    return;
-  }
-
-  slideshow.style.transform = `translate(${-(slideshowWidth * index)}px, 0)`;
-  bottomSlideshow.scrollTo({
-    top: 0,
-    left: bottomSlideshowItemWidth * index,
-    behavior: 'smooth',
-  });
-
-  bottomSlideshow.children[currentSlideIndex].classList.remove('current');
-  bottomSlideshow.children[index].classList.add('current');
-
-  currentSlideIndex = index;
-}
-
-function bottomSlideshowClick(e, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth) {
-  const element = e.target.closest('li');
-  const index = Array.prototype.indexOf.call(bottomSlideshow.children, element);
-
-  goToSlide(index, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-}
-
-let buttonPrevHandler;
-let buttonNextHandler;
-let bottomSlideshowClickHandler;
-
-function initSlideshow() {
-  const container = document.querySelector('.container');
-  const slideshow = document.querySelector('.slideshow');
-  const bottomSlideshow = document.querySelector('.bottomSlideshow');
-  const buttonPrev = container.querySelector('.prev');
-  const buttonNext = container.querySelector('.next');
-  const slideshowWidth = slideshow ? slideshow.offsetWidth : 0;
-  const bottomSlideshowItemWidth = bottomSlideshow
-    ? bottomSlideshow.children[0].offsetWidth + 6 // TODO: Add constants here
-    : 0;
-
-  if (lastSlideIndex === undefined) {
-    lastSlideIndex = slideshow.children.length - 1;
-    bottomSlideshow.children[currentSlideIndex].classList.add('current');
-  } else {
-    buttonPrev.removeEventListener('click', buttonPrevHandler);
-    buttonNext.removeEventListener('click', buttonNextHandler);
-    bottomSlideshow.removeEventListener('click', bottomSlideshowClickHandler);
-    goToSlide(currentSlideIndex, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-  }
-
-  buttonPrevHandler = () => goToPrev(slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-  buttonNextHandler = () => goToNext(slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-  bottomSlideshowClickHandler = (e) => bottomSlideshowClick(e, slideshow, bottomSlideshow, slideshowWidth, bottomSlideshowItemWidth);
-
-  buttonPrev.addEventListener('click', buttonPrevHandler);
-  buttonNext.addEventListener('click', buttonNextHandler);
-  bottomSlideshow.addEventListener('click', bottomSlideshowClickHandler);
-}
-
-/* */
-
-const renderInstagram = (instagram) => {
-  return `
-    <a href="${instagram}">${instagram.match(/[^/]+$/)[0]}</a>
-  `;
-};
-
-async function renderSlides(points, content) {
-  const container = document.querySelector('.slideshow');
-
-  const slides = await Promise.all(
-    points.map(async (point) => {
-      const imageOriginalSize = await getImageOriginalSize(point.imageSrcBig);
-      const containerSize = { width: container.offsetWidth, height: container.offsetHeight - 40 }; // author block height
-      const data = useImageSize(containerSize, imageOriginalSize);
-
-      return `<li>
-        <div class="slide">
-          <div class="imageContainer">
-            <img
-              src="${point.imageSrcBig}"
-              alt="${point.address.country}"
-              style="width:${data.width}px;height:${data.height}px;"
-              data-scale="${data.scale}"
-            />
-          </div>
-          <div class="info">
-            <span class="icon">
-              <button type="button" class="openMoreSlideInfoButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                  <path fill="white" d="M18.83 12.7l-8.58-3.26a.774.774 0 00-.52 0L1.17 12.7a.73.73 0 01-.95-.44l-.17-.47c-.14-.39.05-.82.43-.97L9.73 7.3c.17-.06.35-.06.52 0l9.27 3.52c.38.15.58.58.44.97l-.17.47c-.15.39-.58.59-.96.44z"/>
-                </svg>
-              </button>
-            </span>
-            <span class="country">${point.address.country}</span>
-            <span class="city">${point.address.city}</span>
-            <div class="streetAndDateContainer">
-              <span class="street">${point.address.street}</span>
-              <span class="date">${formatDate(point.createdAt)}</span>
-            </div>
-          </div>
-        </div>
-        <div class="authorContainer">
-          <span class="text">
-            ${content.author}: ${point.author.instagram
-              ? renderInstagram(point.author.instagram)
-              : point.author.name
-            }
-          </span>
-        </div>
-      </li>`;
-    }));
-
-  const combinedSlides = slides.reduce((acc, currentSlide) => acc += currentSlide);
-
-  container.innerHTML = combinedSlides;
-  container.addEventListener('click', toggleSlidesScale);
-}
-
-let scaledSlides = true;
-function toggleSlidesScale(e) {
-  Array.prototype.forEach.call(e.currentTarget.children, (item) => {
-    const img = item.querySelector('img');
-    const header = document.querySelector('.header');
-    const info = item.querySelector('.info');
-
-    const valueToScaleImage = scaledSlides ? img.dataset.scale : 1;
-    const valueToTranslateHeader = scaledSlides ? header.offsetHeight + 10 : 0;
-    const valueToTranslateInfo = scaledSlides ? info.offsetHeight + 10 : 0;
-
-    img.style.transform = `scale(${valueToScaleImage})`;
-    header.style.transform = `translateY(-${valueToTranslateHeader}px)`;
-    info.style.transform = `translateY(${valueToTranslateInfo}px)`;
-  });
-
-  scaledSlides = !scaledSlides;
-}
+const map = new Map();
 
 function renderButtomSlides(points) {
-  return points.reduce((acc, currentPoint) => {
+  return points.reduce((acc, currentPoint, index) => {
     acc += `<li>
+      <span class="number">${index + 1}</span>
       <img src="${currentPoint.imageSrcSmall}" alt="${currentPoint.address.country}" />
     </li>`;
 
@@ -234,48 +38,71 @@ function fetchRoute() {
   }
 }
 
+function addBottomSlideshowHandler() {
+  let currentIndex;
+  const bottomSlideshow = document.getElementById('BottomSlideshow');
+
+  bottomSlideshow.addEventListener('click', (e) => {
+    const element = e.target.closest('li');
+    const index = Array.prototype.indexOf.call(bottomSlideshow.children, element);
+
+    if (index >= 0) {
+      bottomSlideshow.children[currentIndex]
+        && bottomSlideshow.children[currentIndex].classList.remove('current');
+      bottomSlideshow.children[index]
+        && bottomSlideshow.children[index].classList.add('current');
+      currentIndex = index;
+      map.renderMarkers(currentIndex);
+    }
+  });
+}
+
 async function renderContent(currentLanguage) {
   const main = document.querySelector('main');
   const content = ALL_CONTENT[currentLanguage];
 
-  const route = await fetchRoute();
+  try {
+    const route = await fetchRoute();
 
-  const markup = route
-    ? `
+    const markup = `
       <div class="container">
         <div class="header">
-          <span class="routeName">${route.name}</span>
-          <button class="buttonWithOptions">
+          <button type="button" class="walk" id="Walk">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path fill="white" d="M.04 10c0-1.31 1.07-2.38 2.38-2.38S4.8 8.68 4.8 10c0 1.31-1.05 2.38-2.38 2.38C1.11 12.38.04 11.31.04 10zM15.2 10c0-1.31 1.07-2.38 2.38-2.38s2.38 1.06 2.38 2.38c0 1.31-1.05 2.38-2.38 2.38C16.27 12.38 15.2 11.31 15.2 10zM7.62 10c0-1.31 1.07-2.38 2.38-2.38s2.38 1.06 2.38 2.38c0 1.31-1.05 2.38-2.38 2.38C8.69 12.38 7.62 11.31 7.62 10z"/>
+              <path d="M13.55 13.95l-1.94-2.18.05-2.72 1.81 1.65c.32.29.81.27 1.1-.05.29-.32.27-.81-.05-1.1L11.7 6.97l.02-.87c0-.98-.8-1.89-1.77-1.77-.62.08-1.32.69-1.4.82L6.12 8.08C5.85 8.42 5.71 8.86 5.73 9.29l.08 1.73c.02.43.38.76.81.74s.76-.38.74-.81L7.29 9.53C7.28 9.27 7.37 9 7.53 8.79l.83-1.06.09 4.06-.49 2.62c-.03.14-.08.28-.16.4L5.34 18.8c-.23.37-.11.84.25 1.07.37.23.84.11 1.07-.25l2.62-4.26c.07-.11.12-.24.15-.37l.53-2.36 2.05 1.98c.2.19.33.44.37.71l.66 4.01c.06.36.36.63.72.65.06 0 .11 0 .17-.01.42-.07.71-.47.64-.89l-.74-4.5C13.82 14.35 13.71 14.13 13.55 13.95zM9.9 4.08c1.12 0 2.04-.91 2.04-2.04C11.94.92 11.03 0 9.9 0S7.86.92 7.86 2.04C7.86 3.17 8.78 4.08 9.9 4.08z"/>
             </svg>
+            ${content.directionButtons.walk}
+          </button>
+          <button type="button" class="drive" id="Drive">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M18.8 8.38l-1.55-4.09c-.65-1.72-2.22-2.83-3.99-2.83H6.94c-1.68 0-3.21 1.03-3.91 2.63l-1.86 4.3C.52 8.44 0 8.98 0 9.65v4.18c0 .7.57 1.27 1.27 1.27h17.45c.7 0 1.27-.57 1.27-1.27V9.65C20 8.97 19.47 8.42 18.8 8.38zM4.3 4.64c.48-1.09 1.51-1.8 2.64-1.8h6.32c1.19 0 2.25.76 2.7 1.94l.99 2.62H3.1L4.3 4.64zM3.89 13.26c-.92 0-1.67-.75-1.67-1.67 0-.92.75-1.67 1.67-1.67s1.67.75 1.67 1.67C5.56 12.51 4.81 13.26 3.89 13.26zM8.46 13H8.12v-2.81h.34V13zM10.24 13H9.9v-2.81h.34V13zM11.98 13h-.34v-2.81h.34V13zM15.99 13.26c-.92 0-1.67-.75-1.67-1.67 0-.92.75-1.67 1.67-1.67s1.67.75 1.67 1.67C17.66 12.51 16.91 13.26 15.99 13.26zM4.59 15.49v2.03c0 .56-.57 1.02-1.28 1.02l0 0c-.7 0-1.28-.46-1.28-1.02v-2.03C2.03 15.49 4.59 15.49 4.59 15.49zM17.76 15.49v2.03c0 .56-.57 1.02-1.28 1.02l0 0c-.7 0-1.28-.46-1.28-1.02v-2.03C15.2 15.49 17.76 15.49 17.76 15.49z"/>
+            </svg>
+            ${content.directionButtons.drive}
+          </button>
+          <button type="button" class="direction" id="Directions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+              <path d="M13.5 5.9L8.1.4C7.5-.2 6.5-.2 6 .4L.4 5.9c-.6.6-.6 1.6 0 2.1l5.5 5.5c.6.6 1.6.6 2.1 0L13.5 8c.6-.5.6-1.5 0-2.1zm-3.3.8L8.1 8.2c-.2.1-.4 0-.4-.2V7H5.4c-.4 0-.7.3-.7.7v1.5h-.9V7.7c0-.9.7-1.6 1.6-1.6h2.3v-1c0-.2.2-.3.4-.2l2.1 1.5c.1.1.1.2 0 .3z"/>
+            </svg>
+            ${content.directionButtons.direction}
           </button>
         </div>
-        <div class="containerSlideshow">
-          <ul class="slideshow">Loading ...</ul>
-        </div>
-        <ul class="bottomSlideshow">${renderButtomSlides(route.points)}</ul>
-        <div class="controls">
-          <button class="prev">Prev</button>
-          <button class="next">Next</button>
-        </div>
+        <div id="map" class="map"></div>
+        <ul id="BottomSlideshow" class="bottomSlideshow">${renderButtomSlides(route.points)}</ul>
       </div>
-    `
-    : `<h2>${content.notFound}</h2>`;
+    `;
 
-  main.innerHTML = markup;
+    main.innerHTML = markup;
 
-  await renderSlides(route.points, content);
-  initSlideshow();
-  renderModalWithSlideInfo(route.points);
-  renderModalWithOptions(route, content.modal);
-  renderModalWithRouteInfo(route, content.modalWithRouteInfo);
-
-  window.addEventListener('resize', async () => {
-    await renderSlides(route.points, content);
-    initSlideshow();
-    registerOpenMoreSlideInfoButtonHandler(route.points);
-  });
+    addBottomSlideshowHandler();
+    directionsButtonsHandlers(route);
+    map.renderMap(route);
+  } catch(e) {
+    main.innerHTML = `
+      <div class="notFoundContainer">
+        <span>${content.notFound}</span>
+      </div>
+    `;
+  }
 }
 
 function getCurrentLanguage() {

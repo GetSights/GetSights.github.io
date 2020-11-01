@@ -10,7 +10,8 @@
   "author": "Oleksii Vakhrushev oleksii.vakhrushev@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "date-fns": "^2.16.1"
+    "@turf/center": "^6.0.1",
+    "@turf/helpers": "^6.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
