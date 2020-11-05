@@ -12,7 +12,7 @@ function renderButtomSlides(points) {
   return points.reduce((acc, currentPoint, index) => {
     acc += `<li>
       <span class="number">${index + 1}</span>
-      <img src="${currentPoint.imageSrcSmall}" alt="${currentPoint.address.country}" />
+      <img src="${currentPoint.imageSrc}" alt="${currentPoint.address.country}" />
     </li>`;
 
     return acc;
