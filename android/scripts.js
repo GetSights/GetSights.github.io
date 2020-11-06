@@ -36,6 +36,10 @@ var ALL_CONTENT = {
       link: 'https://forms.gle/ypHBeWos5dJ8MvvCA',
       name: 'Link to feedback form',
     },
+    sectionWithIntroVideo: {
+      title: 'How to use GetSights',
+      videoId: 'ilLtKEPzXtc',
+    },
     sectionWithDescription: {
       title: 'What is GetSights?',
       description: `
@@ -100,6 +104,10 @@ var ALL_CONTENT = {
       description: 'Пожалуйста заполните форму обратной связи. Нам очень важно узнать что вы думаете о GetSights!',
       link: 'https://forms.gle/wCxXmAeTUPseTH9d7',
       name: 'Ссылка на форму обратной связи',
+    },
+    sectionWithIntroVideo: {
+      title: 'Как пользоваться GetSights',
+      videoId: 'ED0rBiXrgv8',
     },
     sectionWithDescription: {
       title: 'Что такое GetSights?',
@@ -199,6 +207,24 @@ function renderSectionWithFeedbackForm(data) {
   `;
 };
 
+function renderSectionWithIntroVideo(data) {
+  return `
+    <section>
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <div class="responsiveVideoContainer">
+        <iframe
+          type="text/html"
+          src="https://www.youtube.com/embed/${data.videoId}"
+          frameborder="0"
+        >
+        </iframe>
+      </div>
+    </div>
+    </section>
+  `;
+};
+
 function renderSectionWithDescription(data) {
   return `
     <section>
@@ -261,6 +287,7 @@ function renderContent(currentLanguage) {
   const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
   const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
   const sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
+  const sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
   const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
   const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
 
@@ -269,6 +296,7 @@ function renderContent(currentLanguage) {
     ${sectionWithScreenshots}
     ${sectionWithLinksToStores}
     ${sectionWithFeedbackForm}
+    ${sectionWithIntroVideo}
     ${sectionWithDescription}
     ${sectionWithSocialMedia}
   `;

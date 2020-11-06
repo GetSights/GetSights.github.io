@@ -30,6 +30,10 @@ var ALL_CONTENT = {
     sectionWithLinksToStores: {
       title: 'Links to Stores',
     },
+    sectionWithIntroVideo: {
+      title: 'How to use GetSights',
+      videoId: 'ilLtKEPzXtc',
+    },
     sectionWithDescription: {
       title: 'What is GetSights?',
       description: `
@@ -104,6 +108,10 @@ var ALL_CONTENT = {
     },
     sectionWithLinksToStores: {
       title: 'Ссылки к сторам',
+    },
+    sectionWithIntroVideo: {
+      title: 'Как пользоваться GetSights',
+      videoId: 'ED0rBiXrgv8',
     },
     sectionWithDescription: {
       title: 'Что такое GetSights?',
@@ -208,6 +216,24 @@ function renderSectionWithLinksToStores(data) {
   `;
 };
 
+function renderSectionWithIntroVideo(data) {
+  return `
+    <section>
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <div class="responsiveVideoContainer">
+        <iframe
+          type="text/html"
+          src="https://www.youtube.com/embed/${data.videoId}"
+          frameborder="0"
+        >
+        </iframe>
+      </div>
+    </div>
+    </section>
+  `;
+};
+
 function renderSectionWithDescription(data) {
   return `
     <section>
@@ -296,6 +322,7 @@ function renderContent(currentLanguage) {
   const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
   const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
   const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
+  const sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
   const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
   const sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
   const sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
@@ -306,6 +333,7 @@ function renderContent(currentLanguage) {
     ${mainTitle}
     ${sectionWithScreenshots}
     ${sectionWithLinksToStores}
+    ${sectionWithIntroVideo}
     ${sectionWithDescription}
     ${sectionWithSocialMedia}
     ${sectionWithPrivacyAndPolicy}
