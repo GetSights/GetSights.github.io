@@ -30,6 +30,7 @@ var ALL_CONTENT = {
     sectionWithLinksToStores: {
       title: 'Links to Stores',
     },
+    appStoreExplanation: 'Unfortunately GetSights has not released to App Store yet :( \n\nIf you do not want to miss out release date, please follow us on social media',
     sectionWithFeedbackForm: {
       title: 'Feedback form',
       description: 'Please fill out feedback form. We would like to know what do you thing about GetSights!',
@@ -115,6 +116,7 @@ var ALL_CONTENT = {
     sectionWithLinksToStores: {
       title: 'Ссылки к сторам',
     },
+    appStoreExplanation: 'К сожалению GetSights пока ещё не добавлен в App Store :( \n\nЕсли вы не хотите пропустить дату публикации приложения следите за нами в социальных сетях',
     sectionWithFeedbackForm: {
       title: 'Форма обратной связи',
       description: 'Пожалуйста заполните форму обратной связи. Нам очень важно узнать что вы думаете о GetSights!',
@@ -340,9 +342,8 @@ function renderSectionWithLoginViaThirdPartyProvider(data) {
   `;
 }
 
-function renderContent(currentLanguage) {
+function renderContent(content) {
   var main = document.querySelector('main');
-  var content = ALL_CONTENT[currentLanguage];
 
   const mainTitle = renderMainTitle(content.mainTitle);
   const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
@@ -377,19 +378,20 @@ function getCurrentLanguage() {
   return SUPPORTED_LANGUAGES[userLanguage] || SUPPORTED_LANGUAGES[ENGLISH];
 }
 
-function registerHandlers() {
+function registerHandlers(message) {
   var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
 
   linkToAppleStore.addEventListener('click', function() {
-    alert('Unfortunately GetSights has not released to Apple Store yet :( \n\nIf you would like to know exact release date please drop your email to getsights.info@gmail.com or follow us on social media');
+    alert(message);
   })
 }
 
 function init() {
   var currentLanguage = getCurrentLanguage();
+  var content = ALL_CONTENT[currentLanguage];
 
-  renderContent(currentLanguage);
-  registerHandlers();
+  renderContent(content);
+  registerHandlers(content.appStoreExplanation);
 }
 
 window.addEventListener('load', init);
