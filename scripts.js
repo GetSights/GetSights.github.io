@@ -30,6 +30,12 @@ var ALL_CONTENT = {
     sectionWithLinksToStores: {
       title: 'Links to Stores',
     },
+    sectionWithFeedbackForm: {
+      title: 'Feedback form',
+      description: 'Please fill out feedback form. We would like to know what do you thing about GetSights!',
+      link: 'https://forms.gle/ypHBeWos5dJ8MvvCA',
+      name: 'Link to feedback form',
+    },
     sectionWithIntroVideo: {
       title: 'How to use GetSights',
       videoId: 'ilLtKEPzXtc',
@@ -108,6 +114,12 @@ var ALL_CONTENT = {
     },
     sectionWithLinksToStores: {
       title: 'Ссылки к сторам',
+    },
+    sectionWithFeedbackForm: {
+      title: 'Форма обратной связи',
+      description: 'Пожалуйста заполните форму обратной связи. Нам очень важно узнать что вы думаете о GetSights!',
+      link: 'https://forms.gle/wCxXmAeTUPseTH9d7',
+      name: 'Ссылка на форму обратной связи',
     },
     sectionWithIntroVideo: {
       title: 'Как пользоваться GetSights',
@@ -212,6 +224,20 @@ function renderSectionWithLinksToStores(data) {
           </a>
         </div>
       </div>
+    </section>
+  `;
+};
+
+function renderSectionWithFeedbackForm(data) {
+  return `
+    <section class="feedbackForm">
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <p>${data.description}</p>
+      <a href="${data.link}" target="_blank">
+        ${data.name}
+      </a>
+    </div>
     </section>
   `;
 };
@@ -321,8 +347,9 @@ function renderContent(currentLanguage) {
   const mainTitle = renderMainTitle(content.mainTitle);
   const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
   const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
-  const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
+  const sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
   const sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
+  const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
   const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
   const sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
   const sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
@@ -333,6 +360,7 @@ function renderContent(currentLanguage) {
     ${mainTitle}
     ${sectionWithScreenshots}
     ${sectionWithLinksToStores}
+    ${sectionWithFeedbackForm}
     ${sectionWithIntroVideo}
     ${sectionWithDescription}
     ${sectionWithSocialMedia}
