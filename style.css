@@ -20,10 +20,64 @@ body {
   font-size: 50px;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 80px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s;
+}
+
+.sticky {
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.headerContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  padding-left: 70px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.headerContainer a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+}
+
+.headerContainer a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mainTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 24px;
+  margin: 0;
+  text-align: center;
+}
+
 main {
   min-width: 320px;
   width: 100%;
-  padding: 20px 10px 0;
+  padding: 100px 20px 0; /* 80px + 20px */
   box-sizing: border-box;
 }
 
@@ -36,23 +90,22 @@ main > section {
 }
 
 main > section > h2 {
-  display: flex;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   font-size: 28px;
   margin: 0 0 16px;
-}
-
-.mainTitle {
-  font-size: 34px;
-  margin: 0 0 34px;
   text-align: center;
 }
 
 .contentContainer {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
+
+.contentContainer > p {
+  font-size: 18px;
+}
+
 .contentContainer > *:first-child {
   margin-top: 0;
 }
@@ -168,13 +221,11 @@ main > section > h2 {
 
 @media screen and (min-width: 768px) {
   .mainTitle {
-    font-size: 38px;
+    font-size: 30px;
   }
 
-  main > section > h2 {
-    max-width: 700px;
-  }
-
+  .headerContainer,
+  main > section > h2,
   .contentContainer {
     max-width: 700px;
   }
@@ -192,7 +243,7 @@ main > section > h2 {
   }
 
   .storeLinks a {
-    width: 220px;
+    width: 250px;
     margin-right: 30px;
   }
 
@@ -207,12 +258,18 @@ main > section > h2 {
 }
 
 @media screen and (min-width: 1024px) {
-  main > section > h2 {
+  .mainTitle {
+    font-size: 32px;
+  }
+
+  .headerContainer,
+  main > section > h2,
+  .contentContainer {
     max-width: 800px;
   }
 
-  .contentContainer {
-    max-width: 800px;
+  .storeLinks a {
+    width: 260px;
   }
 
   .screenshots ul {

@@ -7,7 +7,7 @@ var SUPPORTED_LANGUAGES = {
 
 var ALL_CONTENT = {
   [ENGLISH]: {
-    mainTitle: 'GetSights mobile app',
+    mainTitle: 'GetSights Mobile App',
     sectionWithScreenshots: {
       title: 'Screenshots',
       homeScreen: {
@@ -29,6 +29,7 @@ var ALL_CONTENT = {
     },
     sectionWithLinksToStores: {
       title: 'Links to Stores',
+      description: 'To install GetSights - press to one of links below',
     },
     appStoreExplanation: 'Unfortunately GetSights has not released to App Store yet :( \n\nIf you do not want to miss out release date, please follow us on social media',
     sectionWithFeedbackForm: {
@@ -93,7 +94,7 @@ var ALL_CONTENT = {
     },
   },
   [RUSSIAN]: {
-    mainTitle: 'GetSights мобильное приложение',
+    mainTitle: 'GetSights Мобильное Приложение',
     sectionWithScreenshots: {
       title: 'Скриншоты',
       homeScreen: {
@@ -115,6 +116,7 @@ var ALL_CONTENT = {
     },
     sectionWithLinksToStores: {
       title: 'Ссылки к сторам',
+      description: 'Чтобы установить GetSights - перейдите по одной из ссылок ниже',
     },
     appStoreExplanation: 'К сожалению GetSights пока ещё не добавлен в App Store :( \n\nЕсли вы не хотите пропустить дату публикации приложения следите за нами в социальных сетях',
     sectionWithFeedbackForm: {
@@ -180,9 +182,16 @@ var ALL_CONTENT = {
   },
 };
 
-function renderMainTitle(title) {
+function renderHeader(title) {
   return `
-    <h1 class="mainTitle">${title}</h1>
+    <header class="header" id="header">
+      <div class="headerContainer">
+        <a href="https://info.get-sights.com">
+          <img src="./assets/icons/logo.png" alt="Logo" />
+        </a>
+        <h1 class="mainTitle">${title}</h1>
+      </div>
+    </header>
   `;
 };
 
@@ -217,6 +226,7 @@ function renderSectionWithLinksToStores(data) {
     <section class="storeLinksSection">
       <h2>${data.title}</h2>
       <div class="contentContainer">
+        <p>${data.description}</p>
         <div class="storeLinks">
           <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
@@ -345,20 +355,20 @@ function renderSectionWithLoginViaThirdPartyProvider(data) {
 function renderContent(content) {
   var main = document.querySelector('main');
 
-  const mainTitle = renderMainTitle(content.mainTitle);
-  const sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
-  const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
-  const sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
-  const sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
-  const sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
-  const sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
-  const sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
-  const sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
-  const sectionWithLoginViaFacebook = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaFacebook);
-  const sectionWithLoginViaInstagram = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaInstagram);
+  var header = renderHeader(content.mainTitle);
+  var sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
+  var sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
+  var sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
+  var sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
+  var sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
+  var sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
+  var sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
+  var sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
+  var sectionWithLoginViaFacebook = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaFacebook);
+  var sectionWithLoginViaInstagram = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaInstagram);
 
+  main.insertAdjacentHTML('beforebegin', header);
   main.innerHTML = `
-    ${mainTitle}
     ${sectionWithScreenshots}
     ${sectionWithLinksToStores}
     ${sectionWithFeedbackForm}
@@ -373,17 +383,34 @@ function renderContent(content) {
 }
 
 function getCurrentLanguage() {
-  const userLanguage = window.navigator.language;
+  var userLanguage = window.navigator.language;
 
   return SUPPORTED_LANGUAGES[userLanguage] || SUPPORTED_LANGUAGES[ENGLISH];
 }
 
-function registerHandlers(message) {
+function registerScrollPageHandler() {
+  var header = document.getElementById('header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  });
+}
+
+function registerAppStoreLinkClickHandler(message) {
   var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
 
   linkToAppleStore.addEventListener('click', function() {
     alert(message);
-  })
+  });
+}
+
+function registerHandlers(message) {
+  registerAppStoreLinkClickHandler(message);
+  registerScrollPageHandler();
 }
 
 function init() {
