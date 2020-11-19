@@ -7,7 +7,6 @@ var SUPPORTED_LANGUAGES = {
 
 var ALL_CONTENT = {
   [ENGLISH]: {
-    mainTitle: 'GetSights Mobile App',
     sectionWithScreenshots: {
       title: 'Screenshots',
       homeScreen: {
@@ -94,7 +93,6 @@ var ALL_CONTENT = {
     },
   },
   [RUSSIAN]: {
-    mainTitle: 'GetSights Мобильное Приложение',
     sectionWithScreenshots: {
       title: 'Скриншоты',
       homeScreen: {
@@ -182,14 +180,14 @@ var ALL_CONTENT = {
   },
 };
 
-function renderHeader(title) {
+function renderHeader() {
   return `
     <header class="header" id="header">
       <div class="headerContainer">
         <a href="https://info.get-sights.com">
           <img src="./assets/icons/logo.png" alt="Logo" />
         </a>
-        <h1 class="mainTitle">${title}</h1>
+        <h1 class="mainTitle">GetSights</h1>
       </div>
     </header>
   `;
@@ -355,7 +353,7 @@ function renderSectionWithLoginViaThirdPartyProvider(data) {
 function renderContent(content) {
   var main = document.querySelector('main');
 
-  var header = renderHeader(content.mainTitle);
+  var header = renderHeader();
   var sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
   var sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
   var sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);

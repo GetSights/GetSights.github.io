@@ -11,14 +11,14 @@ import './style.scss';
 
 const map = new Map();
 
-function renderHeader(title) {
+function renderHeader() {
   return `
     <header class="header" id="header">
       <div class="headerContainer">
         <a href="https://info.get-sights.com">
           <img src="${logoIcon}" alt="Logo" />
         </a>
-        <h1 class="mainTitle">GetSights - ${title}</h1>
+        <h1 class="mainTitle">GetSights</h1>
       </div>
     </header>
   `;
@@ -106,7 +106,7 @@ async function renderContent(currentLanguage) {
 
   try {
     const route = await fetchRoute();
-    const header = renderHeader(content.mainTitle);
+    const header = renderHeader();
     const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
     const sectionWithRouteName = renderSectionWithRouteName(route.name);
 

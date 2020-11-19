@@ -7,7 +7,6 @@ export const SUPPORTED_LANGUAGES = {
 
 export const ALL_CONTENT = {
   [ENGLISH]: {
-    mainTitle: 'Mobile App',
     sectionWithLinksToStores: {
       description: 'To install GetSights - press to one of links below',
     },
@@ -20,7 +19,6 @@ export const ALL_CONTENT = {
     notFound: 'Route not found!',
   },
   [RUSSIAN]: {
-    mainTitle: 'Мобильное Приложение',
     sectionWithLinksToStores: {
       description: 'Чтобы установить GetSights - перейдите по одной из ссылок ниже',
     },
