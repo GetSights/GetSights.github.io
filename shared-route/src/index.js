@@ -2,11 +2,27 @@ import Map from './Map';
 import directionsButtonsHandlers from './directionsButtonsHandlers';
 import { ENGLISH, RUSSIAN, ALL_CONTENT, SUPPORTED_LANGUAGES } from './constants';
 import getQueryParams from './utils/getQueryParams';
+import logoIcon from '../../assets/icons/logo.png';
+import googlePlayIcon from '../../assets/icons/GooglePlay.png';
+import appleStoreIcon from '../../assets/icons/AppleStore.png';
 import './style.scss';
 
 // import mockedRoute from '../mockedRoute';
 
 const map = new Map();
+
+function renderHeader(title) {
+  return `
+    <header class="header" id="header">
+      <div class="headerContainer">
+        <a href="https://info.get-sights.com">
+          <img src="${logoIcon}" alt="Logo" />
+        </a>
+        <h1 class="mainTitle">GetSights - ${title}</h1>
+      </div>
+    </header>
+  `;
+};
 
 function renderButtomSlides(points) {
   return points.reduce((acc, currentPoint, index) => {
@@ -32,7 +48,6 @@ function fetchRoute() {
     // return new Promise((res) => {
     //   setTimeout(() => { res(mockedRoute); }, 100);
     // });
-
   } else {
     return Promise.resolve();
   }
@@ -57,16 +72,49 @@ function addBottomSlideshowHandler() {
   });
 }
 
+function renderSectionWithLinksToStores(data) {
+  return `
+    <section class="storeLinksSection">
+      <div class="contentContainer">
+        <p>${data.description}</p>
+        <div class="storeLinks">
+          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
+            <img src="${googlePlayIcon}" alt="Google Play" />
+          </a>
+          <a id="AppleStoreLinkToStore" href="#">
+            <img src="${appleStoreIcon}" alt="App Store" />
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+};
+
+function renderSectionWithRouteName(name) {
+  return `
+    <section class="routeNameSection">
+      <div class="contentContainer">
+        <p>${name}</p>
+      </div>
+    </section>
+  `;
+};
+
 async function renderContent(currentLanguage) {
   const main = document.querySelector('main');
   const content = ALL_CONTENT[currentLanguage];
 
   try {
     const route = await fetchRoute();
+    const header = renderHeader(content.mainTitle);
+    const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
+    const sectionWithRouteName = renderSectionWithRouteName(route.name);
 
     const markup = `
+      ${sectionWithLinksToStores}
+      ${sectionWithRouteName}
       <div class="container">
-        <div class="header">
+        <div class="controlsDirection">
           <button type="button" class="walk" id="Walk">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M13.55 13.95l-1.94-2.18.05-2.72 1.81 1.65c.32.29.81.27 1.1-.05.29-.32.27-.81-.05-1.1L11.7 6.97l.02-.87c0-.98-.8-1.89-1.77-1.77-.62.08-1.32.69-1.4.82L6.12 8.08C5.85 8.42 5.71 8.86 5.73 9.29l.08 1.73c.02.43.38.76.81.74s.76-.38.74-.81L7.29 9.53C7.28 9.27 7.37 9 7.53 8.79l.83-1.06.09 4.06-.49 2.62c-.03.14-.08.28-.16.4L5.34 18.8c-.23.37-.11.84.25 1.07.37.23.84.11 1.07-.25l2.62-4.26c.07-.11.12-.24.15-.37l.53-2.36 2.05 1.98c.2.19.33.44.37.71l.66 4.01c.06.36.36.63.72.65.06 0 .11 0 .17-.01.42-.07.71-.47.64-.89l-.74-4.5C13.82 14.35 13.71 14.13 13.55 13.95zM9.9 4.08c1.12 0 2.04-.91 2.04-2.04C11.94.92 11.03 0 9.9 0S7.86.92 7.86 2.04C7.86 3.17 8.78 4.08 9.9 4.08z"/>
@@ -91,10 +139,13 @@ async function renderContent(currentLanguage) {
       </div>
     `;
 
+    main.insertAdjacentHTML('beforebegin', header);
     main.innerHTML = markup;
 
     addBottomSlideshowHandler();
     directionsButtonsHandlers(route);
+    registerScrollPageHandler();
+    registerAppStoreLinkClickHandler(content.appStoreExplanation);
     map.renderMap(route);
   } catch(e) {
     main.innerHTML = `
@@ -109,6 +160,26 @@ function getCurrentLanguage() {
   const userLanguage = window.navigator.language;
 
   return SUPPORTED_LANGUAGES[userLanguage] || SUPPORTED_LANGUAGES[ENGLISH];
+}
+
+function registerAppStoreLinkClickHandler(message) {
+  var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
+
+  linkToAppleStore.addEventListener('click', function() {
+    alert(message);
+  });
+}
+
+function registerScrollPageHandler() {
+  const header = document.getElementById('header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      header.classList.add('sticky');
+    } else {
+      header.classList.remove('sticky');
+    }
+  });
 }
 
 function init() {

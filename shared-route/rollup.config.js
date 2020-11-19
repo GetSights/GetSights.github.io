@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from '@rollup/plugin-babel';
+import image from '@rollup/plugin-image';
 import scss from 'rollup-plugin-scss';
 import { uglify } from 'rollup-plugin-uglify';
 import progress from 'rollup-plugin-progress';
@@ -17,6 +18,7 @@ export default {
     resolve(),
     commonjs(),
     babel({ babelHelpers: 'runtime', plugins: ["@babel/plugin-transform-runtime"] }),
+    image(),
     scss({
       output: 'dist/style.css',
     }),

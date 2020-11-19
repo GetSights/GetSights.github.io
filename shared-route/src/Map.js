@@ -25,8 +25,16 @@ class Map {
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat(center),
-        zoom: 2
+        zoom: 2,
       }),
+    });
+
+    this.registerWheelHandler();
+  }
+
+  registerWheelHandler() {
+    this.map.on('wheel', (e) => {
+      e.stopPropagation();
     });
   }
 

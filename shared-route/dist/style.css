@@ -6,7 +6,10 @@ html {
     height: 100%;
     min-height: 100%; }
   html main {
-    height: 100%; }
+    height: 100%;
+    padding: 100px 20px 0;
+    /* 80px + 20px */
+    box-sizing: border-box; }
 
 /* TODO: Combine loader styles with main style.css */
 .notFoundContainer,
@@ -25,55 +28,137 @@ html {
   .loaderContainer > span {
     font-size: 50px; }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 80px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s; }
+  .header.sticky {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2); }
+  .header .headerContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    padding-left: 70px;
+    margin: 0 auto;
+    box-sizing: border-box; }
+    .header .headerContainer a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 60px;
+      height: 60px; }
+      .header .headerContainer a img {
+        display: block;
+        width: 100%;
+        height: 100%; }
+    .header .headerContainer .mainTitle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-size: 24px;
+      margin: 0;
+      text-align: center; }
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 34px; }
+  section .contentContainer {
+    width: 100%;
+    max-width: 500px; }
+    section .contentContainer > p {
+      font-size: 18px; }
+    section .contentContainer > *:first-child {
+      margin-top: 0; }
+    section .contentContainer > *:last-child {
+      margin-bottom: 0; }
+
+.storeLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .storeLinks a {
+    width: 48%;
+    height: auto;
+    text-decoration: none; }
+    .storeLinks a span,
+    .storeLinks a strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #a8a8a8; }
+    .storeLinks a strong {
+      margin-bottom: 20px; }
+    .storeLinks a img {
+      display: block;
+      width: 100%;
+      height: 100%; }
+
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
-  overflow: hidden; }
-  .container .header {
+  height: calc(100vh - 80px);
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box; }
+  .container .controlsDirection {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 50px;
     transition: transform 0.5s; }
-    .container .header button {
+    .container .controlsDirection button {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 0 8px;
       outline: none; }
-      .container .header button svg {
+      .container .controlsDirection button svg {
         width: 14px;
         height: 14px;
         margin-right: 4px; }
-      .container .header button.walk, .container .header button.drive {
+      .container .controlsDirection button.walk, .container .controlsDirection button.drive {
         border: 2px solid #d1d1d1;
         height: 30px;
         line-height: 30px;
         border-radius: 30px;
         color: #d1d1d1;
         background-color: transparent; }
-        .container .header button.walk svg, .container .header button.drive svg {
+        .container .controlsDirection button.walk svg, .container .controlsDirection button.drive svg {
           fill: #d1d1d1; }
-      .container .header button.current {
+      .container .controlsDirection button.current {
         border: 2px solid #5c93c4;
         color: #5c93c4; }
-        .container .header button.current svg {
+        .container .controlsDirection button.current svg {
           fill: #5c93c4; }
-      .container .header button.direction {
+      .container .controlsDirection button.direction {
         border: 2px solid #5c93c4;
         height: 30px;
         line-height: 30px;
         border-radius: 30px;
         background-color: #5c93c4;
         color: white; }
-        .container .header button.direction svg {
+        .container .controlsDirection button.direction svg {
           fill: white; }
   .container .map {
     position: relative;
     width: 100%;
-    height: calc(100% - calc(140px + 12px) - 50px); }
+    height: calc(100vh - calc(140px + 12px) - 50px - 80px); }
   .container .bottomSlideshow {
     width: 100%;
     overflow-x: auto;
@@ -118,7 +203,26 @@ html {
         width: 100%;
         height: 100%;
         object-fit: cover; }
-  @media screen and (min-width: 620px) {
-    .container {
-      width: 620px;
-      margin: 0 auto; } }
+
+@media screen and (min-width: 768px) {
+  .header .headerContainer,
+  section .contentContainer,
+  .container {
+    max-width: 700px; }
+  .mainTitle {
+    font-size: 30px; }
+  .storeLinks {
+    justify-content: flex-start; }
+    .storeLinks a {
+      width: 250px;
+      margin-right: 30px; } }
+
+@media screen and (min-width: 1024px) {
+  .mainTitle {
+    font-size: 32px; }
+  .header .headerContainer,
+  section .contentContainer,
+  .container {
+    max-width: 800px; }
+  .storeLinks a {
+    width: 260px; } }

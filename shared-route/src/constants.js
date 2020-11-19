@@ -7,6 +7,11 @@ export const SUPPORTED_LANGUAGES = {
 
 export const ALL_CONTENT = {
   [ENGLISH]: {
+    mainTitle: 'Mobile App',
+    sectionWithLinksToStores: {
+      description: 'To install GetSights - press to one of links below',
+    },
+    appStoreExplanation: 'Unfortunately GetSights has not released to App Store yet :( \n\nIf you do not want to miss out release date, please follow us on social media',
     directionButtons: {
       walk: 'Walk',
       drive: 'Drive',
@@ -15,6 +20,11 @@ export const ALL_CONTENT = {
     notFound: 'Route not found!',
   },
   [RUSSIAN]: {
+    mainTitle: 'Мобильное Приложение',
+    sectionWithLinksToStores: {
+      description: 'Чтобы установить GetSights - перейдите по одной из ссылок ниже',
+    },
+    appStoreExplanation: 'К сожалению GetSights пока ещё не добавлен в App Store :( \n\nЕсли вы не хотите пропустить дату публикации приложения следите за нами в социальных сетях',
     directionButtons: {
       walk: 'Пешком',
       drive: 'Машиной',
