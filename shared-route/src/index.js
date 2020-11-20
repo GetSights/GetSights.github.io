@@ -53,6 +53,15 @@ function fetchRoute() {
   }
 }
 
+function registerMoreDescriptionButtonClickHandler() {
+  const moreDescriptionButton = document.getElementById('moreDescriptionButton');
+  const moreDescriptionContainer = document.getElementById('moreDescriptionContainer');
+
+  moreDescriptionButton.addEventListener('click', () => {
+    moreDescriptionContainer.classList.toggle('open');
+  });
+}
+
 function addBottomSlideshowHandler() {
   let currentIndex;
   const bottomSlideshow = document.getElementById('BottomSlideshow');
@@ -71,6 +80,24 @@ function addBottomSlideshowHandler() {
     }
   });
 }
+
+function renderSectionWithAppDescription(data) {
+  return `
+    <section class="appDescriptionSection">
+      <div class="contentContainer">
+        <p>${data.lessDescription}</p>
+        <div class="moreDescriptionContainer" id="moreDescriptionContainer">
+          <p>${data.moreDescription}</p>
+        </div>
+        <div class="moreDescriptionButtonContainer">
+          <button type="button" class="moreDescriptionButton" id="moreDescriptionButton">
+            ${data.buttonTitle}
+          </button>
+        </div>
+      </div>
+    </section>
+  `;
+};
 
 function renderSectionWithLinksToStores(data) {
   return `
@@ -107,10 +134,12 @@ async function renderContent(currentLanguage) {
   try {
     const route = await fetchRoute();
     const header = renderHeader();
+    const sectionWithAppDescription = renderSectionWithAppDescription(content.sectionWithAppDescription);
     const sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
     const sectionWithRouteName = renderSectionWithRouteName(route.name);
 
     const markup = `
+      ${sectionWithAppDescription}
       ${sectionWithLinksToStores}
       ${sectionWithRouteName}
       <div class="container">
@@ -142,6 +171,7 @@ async function renderContent(currentLanguage) {
     main.insertAdjacentHTML('beforebegin', header);
     main.innerHTML = markup;
 
+    registerMoreDescriptionButtonClickHandler();
     addBottomSlideshowHandler();
     directionsButtonsHandlers(route);
     registerScrollPageHandler();
