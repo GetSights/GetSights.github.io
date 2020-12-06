@@ -1,4 +1,4 @@
-export const ENGLISH = 'en-US';
+export const ENGLISH = 'en';
 export const RUSSIAN = 'ru-RU';
 export const SUPPORTED_LANGUAGES = {
   [ENGLISH]: ENGLISH,
