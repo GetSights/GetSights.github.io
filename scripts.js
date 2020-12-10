@@ -30,7 +30,6 @@ var ALL_CONTENT = {
       title: 'Links to Stores',
       description: 'To install GetSights - press to one of links below',
     },
-    appStoreExplanation: 'Unfortunately GetSights has not released to App Store yet :( \n\nIf you do not want to miss out release date, please follow us on social media',
     sectionWithFeedbackForm: {
       title: 'Feedback form',
       description: 'Please fill out feedback form. We would like to know what do you thing about GetSights!',
@@ -116,7 +115,6 @@ var ALL_CONTENT = {
       title: 'Ссылки к сторам',
       description: 'Чтобы установить GetSights - перейдите по одной из ссылок ниже',
     },
-    appStoreExplanation: 'К сожалению GetSights пока ещё не добавлен в App Store :( \n\nЕсли вы не хотите пропустить дату публикации приложения следите за нами в социальных сетях',
     sectionWithFeedbackForm: {
       title: 'Форма обратной связи',
       description: 'Пожалуйста заполните форму обратной связи. Нам очень важно узнать что вы думаете о GetSights!',
@@ -226,10 +224,10 @@ function renderSectionWithLinksToStores(data) {
       <div class="contentContainer">
         <p>${data.description}</p>
         <div class="storeLinks">
-          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
+          <a id="GooglePlayLinkToStore" href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
           </a>
-          <a id="AppleStoreLinkToStore" href="#">
+          <a id="AppleStoreLinkToStore" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
             <img src="./assets/icons/AppleStore.png" alt="App Store" />
           </a>
         </div>
@@ -398,16 +396,7 @@ function registerScrollPageHandler() {
   });
 }
 
-function registerAppStoreLinkClickHandler(message) {
-  var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
-
-  linkToAppleStore.addEventListener('click', function() {
-    alert(message);
-  });
-}
-
 function registerHandlers(message) {
-  registerAppStoreLinkClickHandler(message);
   registerScrollPageHandler();
 }
 

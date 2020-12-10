@@ -108,7 +108,7 @@ function renderSectionWithLinksToStores(data) {
           <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
             <img src="${googlePlayIcon}" alt="Google Play" />
           </a>
-          <a id="AppleStoreLinkToStore" href="#">
+          <a id="AppleStoreLinkToStore" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
             <img src="${appleStoreIcon}" alt="App Store" />
           </a>
         </div>
@@ -175,7 +175,6 @@ async function renderContent(currentLanguage) {
     addBottomSlideshowHandler();
     directionsButtonsHandlers(route);
     registerScrollPageHandler();
-    registerAppStoreLinkClickHandler(content.appStoreExplanation);
     map.renderMap(route);
   } catch(e) {
     main.innerHTML = `
@@ -190,14 +189,6 @@ function getCurrentLanguage() {
   const userLanguage = window.navigator.language;
 
   return SUPPORTED_LANGUAGES[userLanguage] || SUPPORTED_LANGUAGES[ENGLISH];
-}
-
-function registerAppStoreLinkClickHandler(message) {
-  var linkToAppleStore = document.getElementById('AppleStoreLinkToStore');
-
-  linkToAppleStore.addEventListener('click', function() {
-    alert(message);
-  });
 }
 
 function registerScrollPageHandler() {
