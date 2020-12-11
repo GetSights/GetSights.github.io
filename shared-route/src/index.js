@@ -212,8 +212,9 @@ function registerClickByPlayMarketHandler() {
 
   playMarketButton.addEventListener('click', () => {
     gtag('event', 'click_by_PlayMarket_link_on_shared_route_page', {
-      'event_category': 'links_to_stores',
-      'event_label': 'Click by PlayMarket',
+      event_category: 'links_to_stores',
+      event_label: 'Click by PlayMarket',
+      event_action: 'click',
     });
   });
 }
@@ -223,8 +224,9 @@ function registerClickByAppStoreHandler() {
 
   appStoreButton.addEventListener('click', () => {
     gtag('event', 'click_by_AppStore_link_on_shared_route_page', {
-      'event_category': 'links_to_stores',
-      'event_label': 'Click by AppStore',
+      event_category: 'links_to_stores',
+      event_label: 'Click by AppStore',
+      event_action: 'click',
     });
   });
 }
