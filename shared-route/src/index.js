@@ -1,6 +1,13 @@
 import Map from './Map';
 import directionsButtonsHandlers from './directionsButtonsHandlers';
-import { ENGLISH, RUSSIAN, ALL_CONTENT, SUPPORTED_LANGUAGES } from './constants';
+import {
+  ENGLISH,
+  RUSSIAN,
+  ALL_CONTENT,
+  SUPPORTED_LANGUAGES,
+  PLAY_MARKET_ID,
+  APP_STORE_ID,
+} from './constants';
 import getQueryParams from './utils/getQueryParams';
 import logoIcon from '../../assets/icons/logo.png';
 import googlePlayIcon from '../../assets/icons/GooglePlay.png';
@@ -105,10 +112,10 @@ function renderSectionWithLinksToStores(data) {
       <div class="contentContainer">
         <p>${data.description}</p>
         <div class="storeLinks">
-          <a href="https://play.google.com/store/apps/details?id=com.app.getsights" id="GooglePlayLinkToStore" target="_blank">
+          <a id="${PLAY_MARKET_ID}" href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
             <img src="${googlePlayIcon}" alt="Google Play" />
           </a>
-          <a id="AppleStoreLinkToStore" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
+          <a id="${APP_STORE_ID}" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
             <img src="${appleStoreIcon}" alt="App Store" />
           </a>
         </div>
@@ -171,10 +178,7 @@ async function renderContent(currentLanguage) {
     main.insertAdjacentHTML('beforebegin', header);
     main.innerHTML = markup;
 
-    registerMoreDescriptionButtonClickHandler();
-    addBottomSlideshowHandler();
-    directionsButtonsHandlers(route);
-    registerScrollPageHandler();
+    registerHandlers(route);
     map.renderMap(route);
   } catch(e) {
     main.innerHTML = `
@@ -201,6 +205,40 @@ function registerScrollPageHandler() {
       header.classList.remove('sticky');
     }
   });
+}
+
+function registerClickByPlayMarketHandler() {
+  var playMarketButton = document.getElementById(PLAY_MARKET_ID);
+
+  playMarketButton.addEventListener('click', () => {
+    gtag('event', 'click_by_PlayMarket_link_on_shared_route_page', {
+      'event_category': 'links_to_stores',
+      'event_label': 'Click by PlayMarket',
+    });
+  });
+}
+
+function registerClickByAppStoreHandler() {
+  var appStoreButton = document.getElementById(APP_STORE_ID);
+
+  appStoreButton.addEventListener('click', () => {
+    gtag('event', 'click_by_AppStore_link_on_shared_route_page', {
+      'event_category': 'links_to_stores',
+      'event_label': 'Click by AppStore',
+    });
+  });
+}
+
+function registerHandlers(route) {
+  registerMoreDescriptionButtonClickHandler();
+  addBottomSlideshowHandler();
+  directionsButtonsHandlers(route);
+  registerScrollPageHandler();
+
+  if (gtag) {
+    registerClickByPlayMarketHandler();
+    registerClickByAppStoreHandler();
+  }
 }
 
 function init() {

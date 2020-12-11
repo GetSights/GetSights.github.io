@@ -4,6 +4,8 @@ var SUPPORTED_LANGUAGES = {
   [ENGLISH]: ENGLISH,
   [RUSSIAN]: RUSSIAN,
 };
+var PLAY_MARKET_ID = 'GooglePlayLinkToStore';
+var APP_STORE_ID = 'AppleStoreLinkToStore';
 
 var ALL_CONTENT = {
   [ENGLISH]: {
@@ -224,10 +226,10 @@ function renderSectionWithLinksToStores(data) {
       <div class="contentContainer">
         <p>${data.description}</p>
         <div class="storeLinks">
-          <a id="GooglePlayLinkToStore" href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
+          <a id="${PLAY_MARKET_ID}" href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
           </a>
-          <a id="AppleStoreLinkToStore" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
+          <a id="${APP_STORE_ID}" href="https://apps.apple.com/app/getsights/id1542986310" target="_blank">
             <img src="./assets/icons/AppleStore.png" alt="App Store" />
           </a>
         </div>
@@ -396,8 +398,35 @@ function registerScrollPageHandler() {
   });
 }
 
-function registerHandlers(message) {
+function registerClickByPlayMarketHandler() {
+  var playMarketButton = document.getElementById(PLAY_MARKET_ID);
+
+  playMarketButton.addEventListener('click', () => {
+    gtag('event', 'click_by_PlayMarket_link_on_main_page', {
+      'event_category': 'links_to_stores',
+      'event_label': 'Click by PlayMarket',
+    });
+  });
+}
+
+function registerClickByAppStoreHandler() {
+  var appStoreButton = document.getElementById(APP_STORE_ID);
+
+  appStoreButton.addEventListener('click', () => {
+    gtag('event', 'click_by_AppStore_link_on_main_page', {
+      'event_category': 'links_to_stores',
+      'event_label': 'Click by AppStore',
+    });
+  });
+}
+
+function registerHandlers() {
   registerScrollPageHandler();
+
+  if (gtag) {
+    registerClickByPlayMarketHandler();
+    registerClickByAppStoreHandler();
+  }
 }
 
 function init() {
@@ -405,7 +434,7 @@ function init() {
   var content = ALL_CONTENT[currentLanguage];
 
   renderContent(content);
-  registerHandlers(content.appStoreExplanation);
+  registerHandlers();
 }
 
 window.addEventListener('load', init);

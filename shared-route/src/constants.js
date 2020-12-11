@@ -4,6 +4,8 @@ export const SUPPORTED_LANGUAGES = {
   [ENGLISH]: ENGLISH,
   [RUSSIAN]: RUSSIAN,
 };
+export const PLAY_MARKET_ID = 'GooglePlayLinkToStore';
+export const APP_STORE_ID = 'AppleStoreLinkToStore';
 
 export const ALL_CONTENT = {
   [ENGLISH]: {
