@@ -36,7 +36,7 @@ var ALL_CONTENT = {
     sectionWithPublicationPhotoToInstagram: {
       title: 'Publication photo to Instagram',
       content: [
-        'I want to inform you that whenever you upload your photos to my Application, you agree that I can post them to Instagram, on the @getsights page of my application, while indicating the author who took the photo.',
+        'I want to inform you that whenever you upload your photos to my Application, you agree that I can post them to Instagram, on the <a href="https://www.instagram.com/getsights" target="_blank">@getsights</a> page of my application, while indicating the author who took the photo.',
       ],
     },
     sectionWithCookies: {
@@ -118,7 +118,7 @@ var ALL_CONTENT = {
     sectionWithPublicationPhotoToInstagram: {
       title: 'Публикация в Instagram',
       content: [
-        'Я хочу сообщить вам, что всякий раз, когда вы загружаете свои фотографии в моё Приложение, вы соглашаетесь с тем, что я могу их публиковать в Instagram, на странице моего приложения @getsights, при этом указав автора который сделал это фото.',
+        'Я хочу сообщить вам, что всякий раз, когда вы загружаете свои фотографии в моё Приложение, вы соглашаетесь с тем, что я могу их публиковать в Instagram, на странице моего приложения <a href="https://www.instagram.com/getsights" target="_blank">@getsights</a>, при этом указав автора который сделал это фото.',
       ],
     },
     sectionWithCookies: {
@@ -200,7 +200,7 @@ var ALL_CONTENT = {
     sectionWithPublicationPhotoToInstagram: {
       title: 'Публікація фото до Instagram',
       content: [
-        'Я хочу повідомити вам, що всякий раз, коли ви завантажуєте свої фото до мого Додатку, ви погоджуєтеся з тим, що я можу публікувати їх до Instagram, на сторінку мого Додатка @getsights, при цьому вказавши автора який зробив це фото.',
+        'Я хочу повідомити вам, що всякий раз, коли ви завантажуєте свої фото до мого Додатку, ви погоджуєтеся з тим, що я можу публікувати їх до Instagram, на сторінку мого Додатка <a href="https://www.instagram.com/getsights" target="_blank">@getsights</a>, при цьому вказавши автора який зробив це фото.',
       ],
     },
     sectionWithCookies: {
@@ -332,6 +332,7 @@ function renderContent(currentLanguage) {
   var sectionWithIntroduction = renderSectionWithData(content.sectionWithIntroduction);
   var sectionWithInformationCollectionAndUse = renderSectionWithInformationCollectionAndUse(content.sectionWithInformationCollectionAndUse);
   var sectionWithLogData = renderSectionWithData(content.sectionWithLogData);
+  var sectionWithPublicationPhotoToInstagram = renderSectionWithData(content.sectionWithPublicationPhotoToInstagram);
   var sectionWithCookies = renderSectionWithData(content.sectionWithCookies);
   var sectionWithServiceProviders = renderSectionWithServiceProviders(content.sectionWithServiceProviders);
   var sectionWithSecurity = renderSectionWithData(content.sectionWithSecurity);
@@ -345,6 +346,7 @@ function renderContent(currentLanguage) {
     ${sectionWithIntroduction}
     ${sectionWithInformationCollectionAndUse}
     ${sectionWithLogData}
+    ${sectionWithPublicationPhotoToInstagram}
     ${sectionWithCookies}
     ${sectionWithServiceProviders}
     ${sectionWithSecurity}
