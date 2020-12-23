@@ -1,10 +1,16 @@
-var ENGLISH = 'en-US';
-var RUSSIAN = 'ru-RU';
-var UKRAINIAN = 'uk-UA';
+var ENGLISH = 'en';
+var RUSSIAN = 'ru';
+var UKRAINIAN = 'uk';
 var SUPPORTED_LANGUAGES = {
-  [ENGLISH]: ENGLISH,
-  [RUSSIAN]: RUSSIAN,
-  [UKRAINIAN]: UKRAINIAN,
+  'en': ENGLISH,
+  'en-US': ENGLISH,
+  'en-UK': ENGLISH,
+  'ru': RUSSIAN,
+  'ru-RU': RUSSIAN,
+  'ua': UKRAINIAN,
+  'ua-UA': UKRAINIAN,
+  'uk': UKRAINIAN,
+  'uk-UA': UKRAINIAN,
 };
 
 var ALL_CONTENT = {

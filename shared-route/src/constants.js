@@ -1,8 +1,16 @@
 export const ENGLISH = 'en';
-export const RUSSIAN = 'ru-RU';
+export const RUSSIAN = 'ru';
+// export const UKRAINIAN = 'uk';
 export const SUPPORTED_LANGUAGES = {
-  [ENGLISH]: ENGLISH,
-  [RUSSIAN]: RUSSIAN,
+  'en': ENGLISH,
+  'en-US': ENGLISH,
+  'en-UK': ENGLISH,
+  'ru': RUSSIAN,
+  'ru-RU': RUSSIAN,
+  'ua': RUSSIAN,
+  'ua-UA': RUSSIAN,
+  'uk': RUSSIAN, // TODO: Set UKRAINIAN here
+  'uk-UA': RUSSIAN, // TODO: Set UKRAINIAN here
 };
 export const PLAY_MARKET_ID = 'GooglePlayLinkToStore';
 export const APP_STORE_ID = 'AppleStoreLinkToStore';

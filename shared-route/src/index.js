@@ -2,7 +2,6 @@ import Map from './Map';
 import directionsButtonsHandlers from './directionsButtonsHandlers';
 import {
   ENGLISH,
-  RUSSIAN,
   ALL_CONTENT,
   SUPPORTED_LANGUAGES,
   PLAY_MARKET_ID,
@@ -44,7 +43,7 @@ function renderButtomSlides(points) {
 
 function fetchRoute() {
   const params = getQueryParams();
-  const lang = (window.navigator.language === 'ru' || window.navigator.language === RUSSIAN)
+  const lang = (window.navigator.language === 'ru' || window.navigator.language === 'ru-RU')
     ? 'ru'
     : 'en'; // TODO: Add function to detect lang here
 
