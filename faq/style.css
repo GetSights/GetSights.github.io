@@ -113,6 +113,74 @@ main > section > h2 {
   margin-bottom: 0;
 }
 
+.questions {
+  padding: 0;
+  margin: 0;
+}
+
+.questions li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.questions li > input {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.questions li .question {
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  padding: 20px 40px 20px 10px;
+  position: relative;
+  background-color: #f8f8f8;
+  text-align: left;
+  width: 100%;
+}
+.questions li .question::before {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  border: 8px solid transparent;
+  border-right: 12px solid #c0c0c0;
+  content: '';
+  transform: rotate(0) translateY(-50%);
+  transform-origin: 16px 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.questions li .answer {
+  font-size: 14px;
+  padding: 0 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.resizableContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: calc(100% * 9/16);
+}
+.resizableContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.questions li > input:checked ~ .question::before {
+  transform: rotate(-90deg) translateY(-50%);
+}
+.questions li > input:checked ~ .answer {
+  max-height: 5000px;
+}
+
 @media screen and (min-width: 768px) {
   .headerContainer {
     padding-right: 70px;
