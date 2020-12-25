@@ -25,11 +25,18 @@ var ALL_CONTENT = {
         'The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at GetSights unless otherwise defined in this Privacy Policy.',
       ],
     },
+    sectionWithSocialMediaLogins: {
+      title: 'Social media logins',
+      content: [
+        'I want to inform you that whenever you login to my App via social media providers(Facebook, Google and etc.) I will collect your email address and your name.',
+        'Please read next section to know why I collect your data.'
+      ],
+    },
     sectionWithInformationCollectionAndUse: {
       title: 'Information Collection and Use',
       content: [
         'For a better experience, while using my App, I may require you to provide us with certain personally identifiable information.',
-        '<strong>Information which we are collect:</strong> your email address and your name. We store these data to make out users unique and add possibility to restore their account in future.',
+        '<strong>Information which I collect from you are:</strong> your email address and your name. I store these data to make our users unique and add possibility to restore their account in future.',
         'Also the App does use third party services that may collect information used to identify you.',
         'Links to privacy policy of third party service providers used by the App',
       ],
@@ -106,6 +113,13 @@ var ALL_CONTENT = {
         'Эта страница используется для информирования посетителей о моей политике в отношении сбора, использования и раскрытия Личной информации, если кто-то решил использовать моё Приложение.',
         'Если вы решите использовать моё Приложение, вы соглашаетесь на сбор и использование информации в отношении этой политики. Личная информация, которую я собираю, используется для предоставления и улучшения Приложения. Я не буду использовать или передавать вашу информацию кому-либо, кроме случаев, описанных в настоящей Политике конфиденциальности.',
         'Термины, используемые в настоящей Политике конфиденциальности, имеют то же значение, что и в наших Положениях и условиях, доступных на GetSights, если иное не определено в настоящей Политике конфиденциальности.',
+      ],
+    },
+    sectionWithSocialMediaLogins: {
+      title: 'Логин через социальные сети',
+      content: [
+        'Я хочу сообщить вам, что всякий раз, когда вы входите в мое приложение через социальные сети (Facebook, Google и т.д.), Я собираю ваш адрес электронной почты и ваше имя.',
+        'Прочтите следующий раздел, чтобы узнать, почему я собираю ваши данные.'
       ],
     },
     sectionWithInformationCollectionAndUse: {
@@ -189,6 +203,13 @@ var ALL_CONTENT = {
         'Ця сторінка використовується для інформування відвідувачів про мою політиці щодо збору, використання і розкриття Особистою інформації, якщо хтось вирішив використовувати мій Додаток.',
         'Якщо ви вирішите використовувати мій Додаток, ви погоджуєтеся на збір і використання інформації щодо цієї політики. Особиста інформація, яку я збираю, використовується для надання та поліпшення Додатку. Я не буду використовувати або передавати вашу інформацію кому-небудь, крім випадків, описаних у цій Політиці конфіденційності.',
         'Терміни, які використовуються в цій Політиці конфіденційності, мають те ж значення, що і в наших Положеннях та умовах, доступних на GetSights, якщо інше не визначено в цій Політиці конфіденційності.',
+      ],
+    },
+    sectionWithSocialMediaLogins: {
+      title: 'Логін через соціальні мережі',
+      content: [
+        'Я хочу повідомити вам, що всякий раз, коли ви входите до мого додатка через соціальні мережі (Facebook, Google і т.д.), Я збираю Вашу адресу електронної пошти і ваше ім\'я.',
+        'Прочитайте наступний розділ, щоб дізнатися, чому я збираю ваші дані.'
       ],
     },
     sectionWithInformationCollectionAndUse: {
@@ -339,6 +360,7 @@ function renderContent(currentLanguage) {
 
   var header = renderHeader(content.mainTitle);
   var sectionWithIntroduction = renderSectionWithData(content.sectionWithIntroduction);
+  var sectionWithSocialMediaLogins = renderSectionWithData(content.sectionWithSocialMediaLogins);
   var sectionWithInformationCollectionAndUse = renderSectionWithInformationCollectionAndUse(content.sectionWithInformationCollectionAndUse);
   var sectionWithLogData = renderSectionWithData(content.sectionWithLogData);
   var sectionWithPublicationPhotoToInstagram = renderSectionWithData(content.sectionWithPublicationPhotoToInstagram);
@@ -353,6 +375,7 @@ function renderContent(currentLanguage) {
   main.insertAdjacentHTML('beforebegin', header);
   main.innerHTML = `
     ${sectionWithIntroduction}
+    ${sectionWithSocialMediaLogins}
     ${sectionWithInformationCollectionAndUse}
     ${sectionWithLogData}
     ${sectionWithPublicationPhotoToInstagram}
