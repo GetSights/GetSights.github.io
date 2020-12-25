@@ -28,8 +28,9 @@ var ALL_CONTENT = {
     sectionWithInformationCollectionAndUse: {
       title: 'Information Collection and Use',
       content: [
-        'For a better experience, while using my App, I may require you to provide us with certain personally identifiable information. The information that I request will be retained on your device and is not collected by me in any way.',
-        'The App does use third party services that may collect information used to identify you.',
+        'For a better experience, while using my App, I may require you to provide us with certain personally identifiable information.',
+        '<strong>Information which we are collect:</strong> your email address and your name. We store these data to make out users unique and add possibility to restore their account in future.',
+        'Also the App does use third party services that may collect information used to identify you.',
         'Links to privacy policy of third party service providers used by the App',
       ],
     },
@@ -110,7 +111,8 @@ var ALL_CONTENT = {
     sectionWithInformationCollectionAndUse: {
       title: 'Сбор и использование информации',
       content: [
-        'Для лучшего опыта при использовании нашего Приложения я могу потребовать от вас предоставить нам определенную личную информацию. Информация, которую я запрашиваю, будет храниться на вашем устройстве и не будет собираться мной каким-либо образом.',
+        'Для лучшего опыта при использовании нашего Приложения я могу потребовать от вас предоставить нам определенную личную информацию.',
+        '<strong>Информацию которую и храним:</strong> ваш емейл адрес и ваше имя. Мы храним эти данные, чтобы сделать пользователей уникальными и добавить возможность восстановления их учетной записи в будущем.',
         'Приложение использует сторонние сервисы, которые могут собирать информацию, используемую для вашей идентификации.',
         'Ссылки на политику конфиденциальности сторонних поставщиков услуг, используемых приложением',
       ],
@@ -192,7 +194,8 @@ var ALL_CONTENT = {
     sectionWithInformationCollectionAndUse: {
       title: 'Збір і використання інформації',
       content: [
-        'Для кращого досвіду при використанні нашого Додатку я можу вимагати від вас надати нам певну особисту інформацію. Інформація, яку я цікавлюся, буде зберігатися на вашому пристрої і не буде збиратися мною будь-яким чином.',
+        'Для кращого досвіду при використанні нашого Додатку я можу вимагати від вас надати нам певну особисту інформацію.',
+        '<strong>Информацію яку ми зберігаємо:</strong> ваш емейл адрес та ваше ім\'я. Ми зберігаємо ці дані, щоб зробити користувачів унікальними та додати можливість відновити їх обліковий запис у майбутньому.',
         'Додаток використовує сторонні сервіси, які можуть збирати інформацію, яка використовується для вашої ідентифікації.',
         'Посилання на політику конфіденційності сторонніх постачальників послуг, використовуваних додатком',
       ],
