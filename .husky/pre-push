@@ -1,0 +1,7 @@
+# .husky/pre-push
+
+cd shared-route
+npm run rollup:build
+git add .
+git commit --amend --no-edit
+git status
