@@ -7,8 +7,8 @@ var SUPPORTED_LANGUAGES = {
   'en-UK': ENGLISH,
   'ru': RUSSIAN,
   'ru-RU': RUSSIAN,
-  'ua': RUSSIAN,
-  'ua-UA': RUSSIAN,
+  'ua': RUSSIAN, // TODO: Set UKRAINIAN here
+  'ua-UA': RUSSIAN, // TODO: Set UKRAINIAN here
   'uk': RUSSIAN, // TODO: Set UKRAINIAN here
   'uk-UA': RUSSIAN, // TODO: Set UKRAINIAN here
 };
@@ -20,21 +20,9 @@ var ALL_CONTENT = {
   [ENGLISH]: {
     sectionWithScreenshots: {
       title: 'Screenshots',
-      homeScreen: {
-        src: './assets/screenshots/homeScreen.png',
-        alt: 'Home screen',
-      },
-      mapScreen: {
-        src: './assets/screenshots/mapScreen.png',
-        alt: 'Map screen',
-      },
-      uploadScreen: {
-        src: './assets/screenshots/uploadScreen.png',
-        alt: 'Upload screen',
-      },
-      profileScreen: {
-        src: './assets/screenshots/profileScreen.png',
-        alt: 'Profile screen',
+      allScreens: {
+        src: './assets/screenshots/allScreens.png',
+        alt: 'All screens',
       },
     },
     sectionWithLinksToStores: {
@@ -105,21 +93,9 @@ var ALL_CONTENT = {
   [RUSSIAN]: {
     sectionWithScreenshots: {
       title: 'Скриншоты',
-      homeScreen: {
-        src: './assets/screenshots/homeScreen_ru.png',
-        alt: 'Экран главной страницы',
-      },
-      mapScreen: {
-        src: './assets/screenshots/mapScreen_ru.png',
-        alt: 'Экран карты',
-      },
-      uploadScreen: {
-        src: './assets/screenshots/uploadScreen_ru.png',
-        alt: 'Экран загрузки',
-      },
-      profileScreen: {
-        src: './assets/screenshots/profileScreen_ru.png',
-        alt: 'Экран профиля',
+      allScreens: {
+        src: './assets/screenshots/allScreens_ru.png',
+        alt: 'Экраны всех страниц',
       },
     },
     sectionWithLinksToStores: {
@@ -208,20 +184,7 @@ function renderSectionWithScreenshots(data) {
       <h2>${data.title}</h2>
       <div class="contentContainer">
         <div class="scrollContainer">
-          <ul>
-            <li>
-              <img src="${data.homeScreen.src}" alt="${data.homeScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.mapScreen.src}" alt="${data.mapScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.uploadScreen.src}" alt="${data.uploadScreen.alt}" />
-            </li>
-            <li>
-              <img src="${data.profileScreen.src}" alt="${data.profileScreen.alt}" />
-            </li>
-          </ul>
+          <img src="${data.allScreens.src}" alt="${data.allScreens.alt}" />
         </div>
       </div>
     </section>
