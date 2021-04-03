@@ -119,28 +119,12 @@ main > section > h2 {
   overflow: auto;
 }
 
-.screenshots ul {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  overflow: auto;
-  width: calc(70% * 4);
-}
-.screenshots ul li {
-  display: inline-block;
-  width: 70%;
-}
-
-.screenshots ul li:not(:last-child) {
-  margin-right: 10px;
-}
-
-.screenshots ul li img {
+.screenshots img {
   display: block;
-  width: 100%;
+  width: calc(70% * 4);
+  max-width: 900px;
   height: auto;
+  max-height: 400px;
 }
 
 .storeLinks {
@@ -231,14 +215,6 @@ main > section > h2 {
     max-width: 700px;
   }
 
-  .screenshots ul {
-    width: calc(300px * 4 + 30px);
-  }
-
-  .screenshots ul li {
-    width: 300px;
-  }
-
   .storeLinks {
     justify-content: flex-start;
   }
@@ -273,18 +249,10 @@ main > section > h2 {
     width: 260px;
   }
 
-  .screenshots ul {
-    display: flex;
-    flex-wrap: nowrap;
+  .screenshots img {
+    display: block;
     width: 100%;
-  }
-
-  .screenshots ul li {
-    width: 25%;
-    margin-bottom: 0;
-  }
-
-  .screenshots ul li:not(:last-child) {
-    margin-right: 0.5%;
+    max-width: none;
+    max-height: none;
   }
 }
