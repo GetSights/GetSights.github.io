@@ -44,7 +44,11 @@ const getDirections = ({ source, destination, params = [], waypoints = [] }) => 
 
   const url = `https://www.google.com/maps/dir/?api=1&${getParams(params)}${getWaypoints(waypoints)}`;
 
-  window.location = url;
+  try {
+    window.open(url, '_blank').focus();
+  } catch (error) {
+    window.location = url;
+  }
 };
 
 export default getDirections;

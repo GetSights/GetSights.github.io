@@ -13,8 +13,6 @@ import googlePlayIcon from '../../assets/icons/GooglePlay.png';
 import appleStoreIcon from '../../assets/icons/AppleStore.png';
 import './style.scss';
 
-// import mockedRoute from '../mockedRoute';
-
 const map = new Map();
 
 function renderHeader() {
@@ -41,7 +39,19 @@ function renderButtomSlides(points) {
   }, '');
 }
 
-function fetchRoute() {
+async function fetchRoute() {
+  if (process.env.NODE_ENV === 'development') {
+    function getMockedRoute() {
+      return import('../mockedRoute.js');
+    };
+
+    const mockedRoute = await getMockedRoute();
+
+    return new Promise((res) => {
+      setTimeout(() => { res(mockedRoute.default); }, 100);
+    });
+  }
+
   const params = getQueryParams();
   const lang = (window.navigator.language === 'ru' || window.navigator.language === 'ru-RU')
     ? 'ru'
@@ -50,10 +60,6 @@ function fetchRoute() {
   if (params.id) {
     return fetch(`https://api.get-sights.com/api/routes/display?id=${params.id}&lang=${lang}`)
       .then((response) => response.json());
-
-    // return new Promise((res) => {
-    //   setTimeout(() => { res(mockedRoute); }, 100);
-    // });
   } else {
     return Promise.resolve();
   }

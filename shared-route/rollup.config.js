@@ -7,6 +7,8 @@ import { uglify } from 'rollup-plugin-uglify';
 import progress from 'rollup-plugin-progress';
 import filesize from 'rollup-plugin-filesize';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 export default {
   input: 'src/index.js',
@@ -26,5 +28,10 @@ export default {
     progress(),
     filesize(),
     sizeSnapshot(),
+    dynamicImportVars(),
+    injectProcessEnv({
+      NODE_ENV: process.env.NODE_ENV,
+   }),
   ],
+  inlineDynamicImports: true,
 };
