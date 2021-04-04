@@ -19,63 +19,50 @@ var APP_STORE_ID = 'AppleStoreLinkToStore';
 var ALL_CONTENT = {
   [ENGLISH]: {
     sectionWithScreenshots: {
-      title: 'Screenshots',
       allScreens: {
         src: './assets/screenshots/allScreens.png',
         alt: 'All screens',
       },
     },
-    sectionWithLinksToStores: {
-      title: 'Links to Stores',
-      description: 'To install GetSights - press to one of links below',
-    },
-    sectionWithFeedbackForm: {
-      title: 'Feedback form',
-      description: 'Please fill out feedback form. We would like to know what do you thing about GetSights!',
-      link: 'https://forms.gle/ypHBeWos5dJ8MvvCA',
-      name: 'Link to feedback form',
+    sectionWithDescription: {
+      title: 'What is GetSights?',
+      description: `
+        <p>
+          Plan your trip or regular walk, find the best sightseeing and routes, created by travel bloggers, professional travellers and other users, create your own route, share it with friends and more – all from your mobile device.
+        </p>
+      `,
+      keyFeaturesTitle: 'Key Features:',
+      keyFeatures: `
+        <li>Find the best sightseeing and routes</li>
+        <li>Create your own route and share it</li>
+        <li>Open route with Google Map (Navigator)</li>
+        <li>etc...</li>
+      `,
+      geolocation: `
+        Each photo has geolocation so you can get to this great location by car, bicycle, electric scooter or by feet.
+      `,
+      wishes: 'Enjoy your trip!',
     },
     sectionWithIntroVideo: {
       title: 'How to use GetSights',
       videoId: 'ilLtKEPzXtc',
     },
-    sectionWithDescription: {
-      title: 'What is GetSights?',
-      description: `
-        <p>
-          You can find <strong>the best sightseeing</strong>, <strong>lovely places</strong>, <strong>great locations</strong> and <strong>interesting routes</strong> around you, using <strong>GetSights</strong>'s Mobile App.
-        </p>
-        <p>
-          Plan your <strong>trip</strong> or regular <strong>walk</strong>, find the best <strong>sights</strong> and <strong>routes</strong>, created by <strong>travel bloggers</strong>, <strong>professional travellers</strong> or other users, create your <strong>own routes</strong>, share its with friends and more – all from your mobile device.
-        </p>
-      `,
-      keyFeaturesTitle: 'Key Features:',
-      keyFeatures: `
-        <li>find the best <strong>sightseeing</strong>, lovely <strong>places</strong> or great <strong>locations</strong> around the world</li>
-        <li>draw you own polygon to <strong>search sights</strong></li>
-        <li>see only <strong>good quality</strong> content, because each photo will be reviewed by our moderators</li>
-        <li>create your own <strong>routes</strong> from liked photos</li>
-        <li>open <strong>routes</strong> on <strong>Google Map</strong> (Navigator)</li>
-        <li>save your <strong>routes</strong></li>
-        <li>share your <strong>routes</strong> with other people</li>
-        <li>mark your <strong>routes</strong> like a private or public</li>
-        <li>add link to your instagram profile to each photo uploaded by you</li>
-        <li>find <strong>routes</strong> from travel <strong>bloggers</strong>, professional <strong>travellers</strong> or other users</li>
-        <li>etc...</li>
-      `,
-      geolocation: `
-        Each <strong>place</strong> has description, category and geolocation so you can get to this <strong>great location</strong> by car, bicycle, electric scooter or by feet.
-        If you know that some place has incorrect <strong>geolocation</strong> you can make a report and send correct geolocation as well.
-      `,
-      feedback: 'If you would like to send feedback, improve <strong>GetSights</strong> or support us please feel free to send your email to',
-      wishes: 'Enjoy your trip!',
+    sectionWithFeedbackForm: {
+      title: 'Feedback',
+      description: 'It is really important for us to know what do you think about GetSights.<br /> Please feel free to message us on social media or fill out feedback form.',
+      link: 'https://forms.gle/ypHBeWos5dJ8MvvCA',
+      name: 'Link to feedback form',
     },
     sectionWithSocialMedia: {
       title: 'Follow us on social media',
     },
+    sectionWithFaq: {
+      title: 'Frequently asked questions',
+      name: 'Go to Faq',
+    },
     sectionWithPrivacyAndPolicy: {
       title: 'Please read our Privacy and Policy',
-      name: 'Go to GetSights Privacy and Policy',
+      name: 'Go to Privacy and Policy',
     },
     sectionWithLoginViaGoogle: {
       title: 'Login via Google',
@@ -92,59 +79,46 @@ var ALL_CONTENT = {
   },
   [RUSSIAN]: {
     sectionWithScreenshots: {
-      title: 'Скриншоты',
       allScreens: {
         src: './assets/screenshots/allScreens_ru.png',
         alt: 'Экраны всех страниц',
       },
     },
-    sectionWithLinksToStores: {
-      title: 'Ссылки к сторам',
-      description: 'Чтобы установить GetSights - перейдите по одной из ссылок ниже',
-    },
-    sectionWithFeedbackForm: {
-      title: 'Форма обратной связи',
-      description: 'Пожалуйста заполните форму обратной связи. Нам очень важно узнать что вы думаете о GetSights!',
-      link: 'https://forms.gle/wCxXmAeTUPseTH9d7',
-      name: 'Ссылка на форму обратной связи',
+    sectionWithDescription: {
+      title: 'Что такое GetSights?',
+      description: `
+        <p>
+          Планировать ваше путешествие или обычную прогулку, находить лучшие достопримечательности и маршруты, созданные путешествующими блогерами, профессиональными путешественниками или другими пользователями, создавать свои собственные маршруты, делиться ими с друзьями и многое другое – в вашем мобильном телефоне.
+        </p>
+      `,
+      keyFeaturesTitle: 'Ключевые возможности:',
+      keyFeatures: `
+        <li>Находить лучшие достопримечательности и маршруты</li>
+        <li>Создавать свои собственные маршруты и делиться ими с друзьями</li>
+        <li>Открывать маршруты в Гугл карте (Навигаторе)</li>
+        <li>другое...</li>
+      `,
+      geolocation: `
+        У каждого места есть геолокация с которой, вы можете без проблем, добраться на машине, велосипеде, электро самокате или пешком.
+      `,
+      wishes: 'Хорошего путешествия!',
     },
     sectionWithIntroVideo: {
       title: 'Как пользоваться GetSights',
       videoId: 'ED0rBiXrgv8',
     },
-    sectionWithDescription: {
-      title: 'Что такое GetSights?',
-      description: `
-        <p>
-          Вы можете находить <strong>лучшие достопримечательности</strong>, <strong>красивые места</strong>, <strong>отличные локации</strong> и <strong>интересные маршруты</strong>, используя мобильное приложение <strong>GetSights</strong>
-        </p>
-        <p>
-          Планировать ваше <strong>путешествие</strong> или обычную <strong>прогулку</strong>, находить <strong>лучшие достопримечательности</strong> и <strong>маршруты</strong>, созданные <strong>путешествующими блогерами</strong>, <strong>профессиональными путешественниками</strong> или другими пользователями, создавать <strong>свои собственные маршруты</strong>, делиться ими с друзьями и многое другое в вашем мобильном телефоне.
-        </p>
-      `,
-      keyFeaturesTitle: 'Ключевые возможности:',
-      keyFeatures: `
-        <li>находить <strong>лучшие достопримечательности</strong>, <strong>любимые места</strong> или <strong>интересные локации</strong> по всему миру</li>
-        <li>искать <strong>достопримечательностей</strong> и <strong>интересные маршруты</strong> в любой области карты</li>
-        <li>просматривать только <strong>качественный</strong> контент, потому что каждое фото проверяется нашими модераторами</li>
-        <li>создавать свои собственные <strong>маршруты</strong> из понравившихся вам фотографий</li>
-        <li>открывать маршруты на <strong>Гугл карте</strong> (Навигаторе)</li>
-        <li>сохранять ваши собственные <strong>маршруты</strong></li>
-        <li>делиться вашими <strong>маршрутами</strong> с друзьями</li>
-        <li>делать <strong>маршруты</strong> приватными или публичными</li>
-        <li>добавлять ссылку на ваш instagram профиль к каждому загруженному вами <strong>фото</strong></li>
-        <li>находить <strong>интересные маршруты</strong> от <strong>путешествующих блогеров</strong>, <strong>профессиональных путешественников</strong> или других пользователей</li>
-        <li>другое...</li>
-      `,
-      geolocation: `
-        У каждого <strong>места</strong> есть описание, категория и <strong>геолокация</strong> с которой вы можете без проблем добраться на машине, велосипеде, электро самокате или пешком.
-        Если вы столкнётесь с фото у которого указана не правильная <strong>геолокация</strong>, вы можете пожаловаться на него, а также указать правильную геолокацию.
-      `,
-      feedback: 'Если вы хотите написать нам, как улучшить <strong>GetSights</strong> или поддержать нас, пожалуйста отправляйте свои письма на',
-      wishes: 'Хорошего путешествия!',
+    sectionWithFeedbackForm: {
+      title: 'Обратная связь',
+      description: 'Нам очень важно знать, что вы думаете о GetSights.<br /> Напишите нам в социальных сетях или заполните форму обратной связи.',
+      link: 'https://forms.gle/wCxXmAeTUPseTH9d7',
+      name: 'Ссылка на форму обратной связи',
     },
     sectionWithSocialMedia: {
       title: 'Подписывайтесь на нас в социальных сетях',
+    },
+    sectionWithFaq: {
+      title: 'Часто задаваемые вопросы',
+      name: 'Перейти к часто задаваемым вопросам',
     },
     sectionWithPrivacyAndPolicy: {
       title: 'Пожалуйста ознакомьтесь с нашей политикой конфиденциальности',
@@ -181,7 +155,6 @@ function renderHeader() {
 function renderSectionWithScreenshots(data) {
   return `
     <section class="screenshots">
-      <h2>${data.title}</h2>
       <div class="contentContainer">
         <div class="scrollContainer">
           <img src="${data.allScreens.src}" alt="${data.allScreens.alt}" />
@@ -194,9 +167,7 @@ function renderSectionWithScreenshots(data) {
 function renderSectionWithLinksToStores(data) {
   return `
     <section class="storeLinksSection">
-      <h2>${data.title}</h2>
       <div class="contentContainer">
-        <p>${data.description}</p>
         <div class="storeLinks">
           <a id="${PLAY_MARKET_ID}" href="https://play.google.com/store/apps/details?id=com.app.getsights" target="_blank">
             <img src="./assets/icons/GooglePlay.png" alt="Google Play" />
@@ -210,16 +181,21 @@ function renderSectionWithLinksToStores(data) {
   `;
 };
 
-function renderSectionWithFeedbackForm(data) {
+function renderSectionWithDescription(data) {
   return `
-    <section class="feedbackForm">
-    <h2>${data.title}</h2>
-    <div class="contentContainer">
-      <p>${data.description}</p>
-      <a href="${data.link}" target="_blank">
-        ${data.name}
-      </a>
-    </div>
+    <section>
+      <h2>${data.title}</h2>
+      <div class="contentContainer">
+        ${data.description}
+        <h3>${data.keyFeaturesTitle}</h3>
+        <ul class="listOfPosibilities">
+          ${data.keyFeatures}
+        </ul>
+        <p>
+          ${data.geolocation}
+        </p>
+        <h3>${data.wishes}</h3>
+      </div>
     </section>
   `;
 };
@@ -242,36 +218,28 @@ function renderSectionWithIntroVideo(data) {
   `;
 };
 
-function renderSectionWithDescription(data) {
+function renderSectionWithFeedbackForm(data) {
   return `
-    <section>
-      <h2>${data.title}</h2>
-      <div class="contentContainer">
-        ${data.description}
-        <h3>${data.keyFeaturesTitle}</h3>
-        <ul class="listOfPosibilities">
-          ${data.keyFeatures}
-        </ul>
-        <p>
-          ${data.geolocation}
-        </p>
-        <p>
-          ${data.feedback} <a href="mailto:getsights.info@gmail.com" target="_blank">getsights.info@gmail.com</a>
-        </p>
-        <h3>${data.wishes}</h3>
-      </div>
+    <section class="feedbackForm">
+    <h2>${data.title}</h2>
+    <div class="contentContainer">
+      <p>${data.description}</p>
+      <a href="${data.link}" target="_blank">
+        ${data.name}
+      </a>
+    </div>
     </section>
   `;
 };
 
 function renderSectionWithSocialMedia(data) {
   return `
-    <section class="social-media">
+    <section class="social-media" id="social-media">
       <h2>${data.title}</h2>
       <div class="contentContainer">
         <ul>
           <li>
-            <a href="https://www.instagram.com/getsights" target="_blank">
+            <a href="https://www.instagram.com/getsights" target="_blank" class="instagram">
               <img src="./assets/icons/instagram.png" alt="Instagram" />
             </a>
           </li>
@@ -281,13 +249,23 @@ function renderSectionWithSocialMedia(data) {
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/company/getsights" target="_blank">
+            <a href="https://www.linkedin.com/company/getsights" target="_blank" class="linkedin">
               <img src="./assets/icons/linkedin.png" alt="Linkedin" />
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/get.sights" target="_blank">
+            <a href="https://www.facebook.com/get.sights" target="_blank" class="facebook">
               <img src="./assets/icons/facebook.png" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@getsights" target="_blank" class="tiktok">
+              <img src="./assets/icons/tiktok.png" alt="TikTok" />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCNaiXRFoz3ZhDHYbplmzNWA" target="_blank" class="youtube">
+              <img src="./assets/icons/youtube.png" alt="YouTube" />
             </a>
           </li>
         </ul>
@@ -302,6 +280,19 @@ function renderSectionWithPrivacyAndPolicy(data) {
       <h2>${data.title}</h2>
       <div class="contentContainer">
         <a href="https://info.get-sights.com/privacy-and-policy/" target="_blank">
+          ${data.name}
+        </a>
+      </div>
+    </section>
+  `;
+}
+
+function renderSectionWithFaq(data) {
+  return `
+    <section>
+      <h2>${data.title}</h2>
+      <div class="contentContainer">
+        <a href="https://info.get-sights.com/faq/" target="_blank">
           ${data.name}
         </a>
       </div>
@@ -328,10 +319,11 @@ function renderContent(content) {
   var header = renderHeader();
   var sectionWithScreenshots = renderSectionWithScreenshots(content.sectionWithScreenshots);
   var sectionWithLinksToStores = renderSectionWithLinksToStores(content.sectionWithLinksToStores);
-  var sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
-  var sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
   var sectionWithDescription = renderSectionWithDescription(content.sectionWithDescription);
+  var sectionWithIntroVideo = renderSectionWithIntroVideo(content.sectionWithIntroVideo);
+  var sectionWithFeedbackForm = renderSectionWithFeedbackForm(content.sectionWithFeedbackForm);
   var sectionWithSocialMedia = renderSectionWithSocialMedia(content.sectionWithSocialMedia);
+  var sectionWithFaq = renderSectionWithFaq(content.sectionWithFaq);
   var sectionWithPrivacyAndPolicy = renderSectionWithPrivacyAndPolicy(content.sectionWithPrivacyAndPolicy);
   var sectionWithLoginViaGoogle = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaGoogle);
   var sectionWithLoginViaFacebook = renderSectionWithLoginViaThirdPartyProvider(content.sectionWithLoginViaFacebook);
@@ -341,10 +333,11 @@ function renderContent(content) {
   main.innerHTML = `
     ${sectionWithScreenshots}
     ${sectionWithLinksToStores}
-    ${sectionWithFeedbackForm}
-    ${sectionWithIntroVideo}
     ${sectionWithDescription}
+    ${sectionWithIntroVideo}
+    ${sectionWithFeedbackForm}
     ${sectionWithSocialMedia}
+    ${sectionWithFaq}
     ${sectionWithPrivacyAndPolicy}
     ${sectionWithLoginViaGoogle}
     ${sectionWithLoginViaFacebook}
