@@ -15,7 +15,7 @@ var SUPPORTED_LANGUAGES = {
 
 var ALL_CONTENT = {
   [ENGLISH]: {
-    mainTitle: 'Privacy Policy',
+    mainTitle: 'Privacy and Policy',
     sectionWithIntroduction: {
       title: 'Introduction',
       content: [
