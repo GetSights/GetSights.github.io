@@ -34,7 +34,7 @@ var ALL_CONTENT = {
       keyFeaturesTitle: 'Key Features:',
       keyFeatures: `
         <li>Find the best sightseeing and routes</li>
-        <li>Create your own route and share it</li>
+        <li>Create your route and share it</li>
         <li>Open route with Google Map (Navigator)</li>
         <li>etc...</li>
       `,
@@ -94,7 +94,7 @@ var ALL_CONTENT = {
       keyFeaturesTitle: 'Ключевые возможности:',
       keyFeatures: `
         <li>Находить лучшие достопримечательности и маршруты</li>
-        <li>Создавать свои собственные маршруты и делиться ими с друзьями</li>
+        <li>Создавать свои маршруты и делиться ими с друзьями</li>
         <li>Открывать маршруты в Гугл карте (Навигаторе)</li>
         <li>другое...</li>
       `,
