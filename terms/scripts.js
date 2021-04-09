@@ -15,7 +15,7 @@ var SUPPORTED_LANGUAGES = {
 
 var ALL_CONTENT = {
   [ENGLISH]: {
-    mainTitle: 'Terms of upload photo',
+    mainTitle: 'Terms for uploading photo',
     sectionWithNotAllowedRules: {
       title: 'Please do not upload:',
       items: [
