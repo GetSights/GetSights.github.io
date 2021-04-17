@@ -254,7 +254,7 @@ function renderSectionWithSocialMedia(data) {
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/get.sights" target="_blank" class="facebook">
+            <a href="https://www.facebook.com/getsights" target="_blank" class="facebook">
               <img src="./assets/icons/facebook.png" alt="Facebook" />
             </a>
           </li>
@@ -266,6 +266,11 @@ function renderSectionWithSocialMedia(data) {
           <li>
             <a href="https://www.youtube.com/channel/UCNaiXRFoz3ZhDHYbplmzNWA" target="_blank" class="youtube">
               <img src="./assets/icons/youtube.png" alt="YouTube" />
+            </a>
+          </li>
+          <li>
+            <a href="https://pin.it/63ipgiR" target="_blank" class="pinterest">
+              <img src="./assets/icons/pinterest.png" alt="Pinterest" />
             </a>
           </li>
         </ul>
