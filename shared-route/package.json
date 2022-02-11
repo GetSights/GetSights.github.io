@@ -23,7 +23,7 @@
     "@rollup/plugin-dynamic-import-vars": "^1.1.1",
     "@rollup/plugin-image": "^2.0.6",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "rollup": "^2.44.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^9.1.1",
